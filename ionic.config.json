@@ -1,0 +1,7 @@
+{
+  "name": "netball4all",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
