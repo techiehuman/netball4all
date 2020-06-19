@@ -1,0 +1,147 @@
+.logo {
+    width :115px; height: 115px; display: inline-block;
+}
+ion-content, .ion-grid-strips ion-row{
+    justify-content: center;
+    text-align: center;
+}
+.round-row {
+    width: 119px;
+    height: 119px;
+    border-radius: 100%;
+    border: 5px #ffffff solid;
+    background:#ffffff;
+    box-shadow: 0px 3px 6px #00000029;  
+    position: absolute;
+    /*margin-top: -12px;
+    margin-left: 75px; */
+
+}
+.ion-row-1 div, .ion-row-2 div, .ion-row-3 div{
+    
+    height: 20px;
+    background: #ffffff;;
+    border-radius: 50px;
+}
+.ion-row-1 div {
+    width: 274px;
+}
+.ion-row-2 div {
+    width: 220px;
+    margin-top: 15px;
+}
+.ion-row-3 div {
+    width: 180px;
+    margin-top: 15px;
+}
+ion-content{
+    --background:#F6F6F6;
+}
+ion-icon{
+    width : 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-top: 10px;
+    --ion-color-favorite: #69bb7b;
+
+
+}
+.col-strips, .ion-grid-strips ion-col,.ion-grid-table ion-col {
+    display: inline-flex;
+    align-items: center;
+   /* justify-content: center; */
+    margin: auto;
+    justify-self: center;
+    justify-items: center;
+    flex: auto;
+  }
+
+.col-strips, .ion-grid-strips ion-col{
+    justify-content: center;
+}
+
+.img-container {
+    display: inherit;
+}
+.round-row {
+    width: 119px;
+    height: 119px;
+    border-radius: 100%;
+    border: 5px #ffffff solid;
+    background:#ffffff;
+    box-shadow: 0px 3px 6px #00000029;  
+    position: absolute;
+    /*margin-top: -12px;
+    margin-left: 75px; */
+
+}
+ion-label.user-name{
+    font-family: 'Roboto-Bold';
+    font-size: 22px;
+    color: #000000;
+    text-transform: uppercase;
+}
+.ion-row-label {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+ion-label.profile-type{
+    font-family: 'Roboto-Medium';
+    font-size: 20px;
+    color: #000000;
+    text-transform: capitalize;
+}
+.ion-col-left, .ion-col-right {
+    font-size: 16px;
+    height: 47px;
+  }
+
+  .ion-col-left {
+      width: 33%;
+      font-family: 'Roboto-Medium';
+      border-top: 0.5px solid #CBC6C6;
+      justify-content: left;
+      padding-left: 10px;
+
+  }
+  .ion-col-left.last, .ion-col-right.last {
+    border-bottom: 0.5px solid #CBC6C6;
+
+  } 
+  .ion-col-right {
+      width: 67%;
+      font-family: 'Roboto-Light';
+      background : #ffffff;
+      border-top: 0.5px solid #CBC6C6;
+      border-left: 0.5px solid #CBC6C6;
+      justify-content: left;
+      padding-left: 17px;
+  }
+  .id-card-gray {
+      width:26.67px;
+      height : 20px;
+      margin-right: 7.67px;
+  }
+  .calendar-gray {
+    width:26px;
+    height : 26px;
+    margin-right: 7.67px;
+}
+.group-gray {
+    width:25.56px;
+    height : 21.68px;
+    margin-right: 7.67px;
+}
+.gender-gray {
+    width:19.4px;
+    height : 19.4px;
+    margin-right: 7.67px;
+}
+  .ion-grid-table {
+      width : 100%;
+      padding : 0px;
+      margin: 0px;
+
+  }
+
+  

@@ -1,0 +1,50 @@
+.logo-img {
+    width: 46px;
+    height: 46px;
+}
+.logo-img-hide{
+    width: 46px;
+    height: 46px;
+    visibility: hidden;
+}
+.ion-label{
+    font-size: 16px;
+    font-family: 'Roboto-Medium';
+    color: #000000;
+}
+.ion-label-desc{
+    font-size: 14px;
+    font-family: 'Roboto-Light';
+    color: #000000;
+}
+.ion-card ion-item {
+    border:none;
+}
+ion-content {
+    --background : #F6F6F6;
+}
+ion-item {
+
+    --border-width: 0;
+    --inner-border-width: 0;
+}
+.ion-card {
+    border-radius: 0px;
+}
+
+.ion-col-left, .ion-col-right {
+    font-family: 'Roboto-Light';
+    padding-left: 10px;
+    color:#A7A4A4;
+    font-size: 12px;
+
+}
+.ion-col-right{
+    text-align: right;
+    justify-content: right;
+}
+.ion-col-left{
+    text-align:left;
+    justify-content: left;
+
+}

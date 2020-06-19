@@ -1,0 +1,64 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+
+
+
+
+        <ion-content>
+            <form (ngSubmit)="onSubmit()">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col class="ion-text-center">
+
+                        <ion-img src="assets/images/logo.png" class="ion-text-center logo"></ion-img>
+
+                    </ion-col>
+                  </ion-row>
+                    <ion-row justify-content-center>
+                      <ion-col>
+                        <div ion-text-center>
+                          <h5 class="ion-text-center">Proceed with your</h5>
+                          <h3 class="ion-text-center login-h3">Login</h3>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                      <ion-row>   
+                          <ion-col>
+                                  <ion-input name="email" type="email" placeholder="Username" ngModel required class="login-fields"> 
+                                      <ion-icon name="person"></ion-icon>
+                                     <!-- <ion-img src="assets/images/placeholder_user_icon.png" class="input-img item-right" item-right></ion-img>-->
+                                  </ion-input>
+                          </ion-col>
+                      </ion-row>
+
+                          <ion-row>
+                            <ion-col>
+                                    <ion-input name="password" type="password" placeholder="Password" ngModel required class="login-fields">
+                                        <ion-icon name="lock-closed"></ion-icon>
+                                       <!--- <ion-img src="assets/images/placeholder_password_icon.png" class="input-img item-right" item-right></ion-img>--->
+                                    </ion-input>
+                            </ion-col>
+                          </ion-row>
+                        
+                          <ion-row class="forgot-row">
+                            <ion-col>
+                              <ion-anchor href="/forgot-password" routerDirection="forward">
+                              Forgot Password?</ion-anchor>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                                <ion-button expand="full" type="submit" >Login</ion-button>
+                            </ion-col>
+                          </ion-row>
+                        
+                  </ion-grid>
+            </form>
+          </ion-content>
+
+
+

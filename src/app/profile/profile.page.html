@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-title >Update Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+    <ion-col class="ion-text-center">
+
+        <ion-img src="assets/images/logo-gray.png" class="ion-text-center logo"></ion-img>
+
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="col-strips">
+          <div class="img-container">
+              <div class="round-row">
+                  <ion-icon name="skull" color="danger"></ion-icon>
+              </div>
+              <ion-grid class="ion-grid-strips">
+                  
+                  <ion-row class="ion-row-1"> 
+                    <div></div>
+                  </ion-row>
+                  <ion-row class="ion-row-2">
+                    <div></div>
+                  </ion-row>
+              
+                  <ion-row class="ion-row-3">        
+                    <div></div>
+                  </ion-row>
+                </ion-grid>
+          </div>
+          
+      </ion-col>
+
+    </ion-row>
+
+<ion-row class="ion-row-label">
+  <ion-col>
+    <ion-label class="user-name">Ann maree Kopos</ion-label>
+  </ion-col>
+</ion-row>
+
+</ion-grid>
+
+<ion-grid>
+  <ion-row class="full">
+    <ion-col class="ion-text-left">
+      <ion-label class="ion-label-field">ID:</ion-label>
+      <ion-label class="ion-label-value">&nbsp;&nbsp;12345678</ion-label>
+    </ion-col>
+    <ion-col class="ion-text-left">
+        <ion-label class="ion-label-field">Season:</ion-label>
+        <ion-label class="ion-label-value">&nbsp;&nbsp;Summer 2020</ion-label>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-row class="full">
+      <ion-col class="ion-text-left">
+        <ion-label class="ion-label-field">Team:</ion-label>
+        <ion-label class="ion-label-value">&nbsp;&nbsp;Booya</ion-label>
+      </ion-col>
+      <ion-col class="ion-text-left">
+          <ion-label class="ion-label-field">Financial</ion-label>
+
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+<form (ngSubmit)="onSubmit()">
+
+<ion-grid class="ion-margin-top">
+  <ion-row>
+    <ion-col class="ion-text-justify">
+      <ion-label class="ion-label-field">First name</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col class="ion-text-justify">
+          <ion-input name="firstname" type="text" placeholder="Ann Maree" ngModel required></ion-input> 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col class="ion-text-justify">
+          <ion-label class="ion-label-field">Last name</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col class="ion-text-justify">
+              <ion-input name="lastname" type="text" placeholder="Kopos" ngModel required></ion-input> 
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-margin-top">
+        <ion-radio-group [(ngModel)]="gender" name="gender">
+          <ion-col class="ion-text-left">   
+              <ion-radio value="Male"></ion-radio> 
+            </ion-col>
+            <ion-col>
+            <ion-label class="ion-text-left radio">Male</ion-label>
+            </ion-col>
+
+          <ion-col class="ion-text-left">  
+              <ion-radio value="Female" checked></ion-radio> 
+            </ion-col>
+            <ion-col>
+              <ion-label class="ion-text-left radio">Female</ion-label>
+              </ion-col>
+        </ion-radio-group>
+      </ion-row>
+
+        <ion-row>
+          <ion-col class="ion-text-right">
+              <ion-button type="submit">Submit</ion-button>
+
+          </ion-col>
+        </ion-row>
+</ion-grid>
+</form>
+
+</ion-content>
