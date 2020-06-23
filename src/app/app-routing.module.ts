@@ -37,7 +37,11 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
-  } 
+  },   {
+    path: 'register-competition',
+    loadChildren: () => import('./register-competition/register-competition.module').then( m => m.RegisterCompetitionPageModule)
+  }
+
 ];
 @NgModule({
   imports: [

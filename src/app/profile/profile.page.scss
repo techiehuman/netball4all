@@ -8,13 +8,22 @@ ion-content, .ion-grid-strips ion-row{
 .round-row {
     width: 119px;
     height: 119px;
-    border-radius: 100%;
+    overflow: hidden;
+    border-radius: 50%;
     border: 5px #ffffff solid;
-    background:#ffffff;
-    box-shadow: 0px 3px 6px #00000029;  
+    background: #ffffff;
+    box-shadow: 0px 3px 6px #00000029;
     position: absolute;
     /*margin-top: -12px;
     margin-left: 75px; */
+
+}
+ .profile-pic{
+    width: 100%;
+    border-radius: 50%;
+    height: 119px;
+    object-fit: cover;
+
 
 }
 .ion-row-1 div, .ion-row-2 div, .ion-row-3 div{
@@ -37,18 +46,29 @@ ion-content, .ion-grid-strips ion-row{
 ion-content{
     --background:#F6F6F6;
 }
-ion-icon{
-    width : 90px;
-    height: 90px;
-    border-radius: 100%;
-    margin-top: 10px;
-    --ion-color-favorite: #69bb7b;
 
-
-}
 
 .img-container {
     display: inherit;
+}
+.camera-icon ion-img {
+    width: 30.89px;
+    height: 25.74px;
+}
+.camera-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    border: 1px solid #111E6C;
+    background: #ffffff;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+    position: absolute;
+    top: 55px;
+    margin-left: 55px;
+
 }
 ion-label.user-name{
     font-family: 'Roboto-Bold';
@@ -81,9 +101,7 @@ ion-label.ion-label-value{
     justify-items: center;
     flex: auto;
   }
-  .hide {
-      visibility: hidden;
-  }
+
   ion-input {
       border: 0.5px solid #CBC6C6;
       height: 41px;
