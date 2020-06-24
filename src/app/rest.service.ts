@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { Player } from './player';
+import { States } from './states';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -25,6 +26,15 @@ export class RestService {
 
     }));
 
+  }
+
+  public getStateList(): Observable<States[]> {
+    let api: string = "api/get-all-states";
+    return  this.httpClient .get(this.baseUrl + api).pipe(map((response: any)  => {
+
+      return  new  Array<States>(response.data);
+
+  }));
   }
 
 }

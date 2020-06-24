@@ -8,6 +8,7 @@ import { RestService } from '../rest.service';
 //import { $ } from 'protractor';
 import * as $ from 'jquery';
 import { Player } from '../player';
+import { States } from '../states';
 //import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -22,6 +23,10 @@ export class ProfilePage implements OnInit {
   public pageData = {};
   public pageDataStatus = {};
   public player: Player = new Player();
+  public states:Array<States>;
+
+
+  public selectedState:string;
 
   constructor(private router: Router, private formBuilder : FormBuilder, reactiveFormsModule : ReactiveFormsModule,
     public  restService: RestService){  
@@ -48,7 +53,16 @@ export class ProfilePage implements OnInit {
     this.restService.getPlayerDetailsById(1).subscribe(response => {
       console.log(response)
         this.player = response;
+        this.selectedState = this.player.state;
+        console.log(this.selectedState);
     });
+
+    this.restService.getStateList().subscribe(response => {
+      console.log(response)
+        this.states = response;
+        console.log(this.states)
+    });
+
   }
 
 }

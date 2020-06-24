@@ -8,14 +8,18 @@ ion-content, .ion-grid-strips ion-row{
 .round-row {
     width: 119px;
     height: 119px;
-    border-radius: 100%;
+    overflow: hidden;
+    border-radius: 50%;
     border: 5px #ffffff solid;
-    background:#ffffff;
-    box-shadow: 0px 3px 6px #00000029;  
+    background: #ffffff;
+    box-shadow: 0px 3px 6px #00000029;
     position: absolute;
-    /*margin-top: -12px;
-    margin-left: 75px; */
-
+}
+ .profile-pic{
+    width: 100%;
+    border-radius: 50%;
+    height: 119px;
+    object-fit: cover;
 }
 .ion-row-1 div, .ion-row-2 div, .ion-row-3 div{
     
@@ -37,15 +41,7 @@ ion-content, .ion-grid-strips ion-row{
 ion-content{
     --background:#F6F6F6;
 }
-ion-icon{
-    width : 90px;
-    height: 90px;
-    border-radius: 100%;
-    margin-top: 10px;
-    --ion-color-favorite: #69bb7b;
 
-
-}
 .col-strips, .ion-grid-strips ion-col,.ion-grid-table ion-col {
     display: inline-flex;
     align-items: center;

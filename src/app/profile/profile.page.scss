@@ -14,17 +14,12 @@ ion-content, .ion-grid-strips ion-row{
     background: #ffffff;
     box-shadow: 0px 3px 6px #00000029;
     position: absolute;
-    /*margin-top: -12px;
-    margin-left: 75px; */
-
 }
  .profile-pic{
     width: 100%;
     border-radius: 50%;
     height: 119px;
     object-fit: cover;
-
-
 }
 .ion-row-1 div, .ion-row-2 div, .ion-row-3 div{
     
@@ -102,7 +97,7 @@ ion-label.ion-label-value{
     flex: auto;
   }
 
-  ion-input {
+  ion-input, ion-select {
       border: 0.5px solid #CBC6C6;
       height: 41px;
       padding-left: 12px;
