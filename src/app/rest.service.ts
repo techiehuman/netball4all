@@ -39,6 +39,17 @@ export class RestService {
 
   }
 
+  public login(data) : Observable<Player> {
+    let api: string = "api/player-login";
+
+    var formData: any = new FormData();
+    formData.append("username", data.email);
+    formData.append("password", data.password);
+  
+    return  this.httpClient .post(this.baseUrl + api, formData).pipe(map((response: any)  => {
+        return  new  Player(response.data);
+    }));
+  }
  
   sendPostRequest(username: string, password: string): Observable<Player> {
     var headers = new Headers();
