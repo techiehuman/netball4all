@@ -17,7 +17,7 @@
       <ion-col class="col-strips">
         <div class="img-container">
             <div class="round-row">
-                <ion-img src="assets/images/demo-pic.jpeg" class="ion-text-center profile-pic"></ion-img>
+                <ion-img src="{{player.picture}}" class="ion-text-center profile-pic"></ion-img>
 
               <!--  <ion-icon name="skull" color="danger"></ion-icon>-->
             </div>
@@ -41,7 +41,7 @@
 
 <ion-row class="ion-row-label">
   <ion-col>
-    <ion-label class="user-name">Ann maree Kopos</ion-label>
+    <ion-label class="user-name">{{player.firstname}} {{player.lastname}}</ion-label>
   </ion-col>
 </ion-row>
 
@@ -52,7 +52,7 @@
             <ion-img src="assets/images/id-card-gray.png" class="id-card-gray"></ion-img>
 
           ID:</ion-col>
-        <ion-col class="ion-col-right">12345678</ion-col>
+        <ion-col class="ion-col-right">{{player.registration_number}}</ion-col>
       </ion-row>
 
       <ion-row>
@@ -60,7 +60,7 @@
               <ion-img src="assets/images/calendar-gray.png" class="calendar-gray"></ion-img>
   
               Season:</ion-col>
-          <ion-col class="ion-col-right">Summer 2020</ion-col>
+          <ion-col class="ion-col-right">{{seasonName}}</ion-col>
         </ion-row>
 
         <ion-row>
@@ -68,7 +68,7 @@
                 <ion-img src="assets/images/group-gray.png" class="group-gray"></ion-img>
     
                 Team:</ion-col>
-            <ion-col class="ion-col-right">Booya</ion-col>
+            <ion-col class="ion-col-right">{{player.team}}</ion-col>
           </ion-row>
 
           <ion-row>
@@ -76,13 +76,81 @@
                   <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
       
                   Gender:</ion-col>
-              <ion-col class="ion-col-right last">Male</ion-col>
+              <ion-col class="ion-col-right last">{{player.gender}}</ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  First Name:</ion-col>
+              <ion-col class="ion-col-right last">{{player.firstname}}</ion-col>
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  Last Name:</ion-col>
+              <ion-col class="ion-col-right last">{{player.lastname}}</ion-col>
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  Address:</ion-col>
+              <ion-col class="ion-col-right last">{{player.street_address}}</ion-col>
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  State:</ion-col>
+              <ion-col class="ion-col-right last">{{stateName}}</ion-col>
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  Postal Code:</ion-col>
+              <ion-col class="ion-col-right last">{{player.postcode}}</ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  Suburb:</ion-col>
+              <ion-col class="ion-col-right last">{{player.subrub}}</ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  Emergency Contact Person:</ion-col>
+              <ion-col class="ion-col-right last">{{player.emergency_contact_person}}</ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-col-left last">
+                  <ion-img src="assets/images/gender-gray.png" class="gender-gray"></ion-img>
+      
+                  Emergency Contact Number:</ion-col>
+              <ion-col class="ion-col-right last">{{player.emergency_phone_number}}</ion-col>
             </ion-row>
     </ion-grid>
     <ion-grid>
         <ion-row class="ion-row-label">
             <ion-col>
-              <ion-label class="profile-type">Financial</ion-label>
+              <ion-label class="profile-type">{{financial_status}}</ion-label>
             </ion-col>
           </ion-row>
     </ion-grid>

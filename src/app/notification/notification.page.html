@@ -8,7 +8,7 @@
 
     
 
-      <ion-card class="ion-card">
+      <ion-card class="ion-card" *ngFor="let notification of notifications">
           <ion-grid>
           <ion-row>
 
@@ -20,13 +20,13 @@
               <ion-grid>
                 <ion-row>
                       <ion-col>         
-                        <ion-label class="ion-label">Lorem Ipsum is simply</ion-label>
+                        <ion-label class="ion-label">{{notification.title}}</ion-label>
                       </ion-col>
                 </ion-row>
                 <ion-row>
                       <ion-col>
                         <ion-label class="ion-label-desc">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                          {{notification.description}}
                         </ion-label>   
                       </ion-col>
                   </ion-row> 

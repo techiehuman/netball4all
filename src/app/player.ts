@@ -22,7 +22,7 @@ export class Player {
 
     street_address: string;
 
-    state: string;
+    state: number;
 
     subrub: string;
 
@@ -31,6 +31,12 @@ export class Player {
     emergency_phone_number: string;
 
     emergency_contact_person: string;
+
+    registration_number: number;
+
+    is_financial: number;
+
+    season_id : number;
 
 
     constructor(values: Object = {}) {
