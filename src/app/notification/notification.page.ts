@@ -21,7 +21,7 @@ export class NotificationPage implements OnInit {
 
   ngOnInit() {
 
-    this.restService.getNotificationsById(1).subscribe(response => {
+    this.restService.getNotifications().subscribe(response => {
         console.log(response)
         this.notifications = response; 
        

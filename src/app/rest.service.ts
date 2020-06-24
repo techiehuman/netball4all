@@ -58,7 +58,7 @@ export class RestService {
     }));
   }
 
-  public  getNotificationsById(playerId: number) : Observable<Notifications[]> {
+  public  getNotifications() : Observable<Notifications[]> {
 
     let api: string = "api/get-all-notifications";
     return  this.httpClient .get(this.baseUrl + api ).pipe(map((response: any)  => {

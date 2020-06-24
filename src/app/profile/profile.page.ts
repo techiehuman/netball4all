@@ -3,6 +3,8 @@ import { Validators, FormBuilder, FormGroup, FormControl,ReactiveFormsModule } f
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { Plugins, CameraResultType } from '@capacitor/core';
+
 
 
 
@@ -11,6 +13,9 @@ import * as $ from 'jquery';
 import { Player } from '../player';
 import { States } from '../states';
 import { Season } from '../season';
+
+const { Camera } = Plugins;
+
 //import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -29,6 +34,7 @@ export class ProfilePage implements OnInit {
   public seasons: Season[];
   public financial_status : string = "";
   public seasonName: string = "";
+  
 
 
   public onchange  : boolean = false;
