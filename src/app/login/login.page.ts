@@ -35,7 +35,7 @@ public isSubmitted = false;
    }); */
    
 
-   this.validation_messages = {
+   /*this.validation_messages = {
     'email': [
       { type: 'required', message: 'Username is required.' },
       { type: 'minlength', message: 'Username must be at least 5 characters long.' },
@@ -49,7 +49,7 @@ public isSubmitted = false;
       { type: 'maxlength', message: 'Password cannot be more than 25 characters long.' },
       { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
     ],
-  }
+   }*/
 
   /* this.todo = this.formBuilder.group({
     username: ['', Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
