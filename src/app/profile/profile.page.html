@@ -19,10 +19,10 @@
           <div class="img-container">
               <div class="round-row">
                 <!-- <ion-img src="assets/images/demo-pic.jpeg" class="ion-text-center profile-pic"></ion-img>-->
-                 <ion-img src="{{player.picture}}" class="ion-text-center profile-pic"></ion-img>
+                 <ion-img src="{{player.picture}}" class="ion-text-center profile-pic" id="profile-pic"></ion-img>
                   
               </div>
-              <div class="camera-icon ion-text-center">
+              <div class="camera-icon ion-text-center" (click)="takePicture()">
                   <ion-img src="assets/images/camera-icon.png" class="ion-text-center"></ion-img>
               </div>
              
@@ -140,7 +140,7 @@
               </ion-row>
               <ion-row>
                   <ion-col class="ion-text-justify">
-                      <ion-select name="state" value="state" placeholder="Select"   [(ngModel)]="selectedState" value="{{selectedState}}">
+                      <ion-select name="state" value="state" placeholder="Select" [(ngModel)]="selectedState" value="{{selectedState}}">
                          
                           <ion-select-option *ngFor="let item of states" value="{{item.id}}">{{item.name}}</ion-select-option>
 
