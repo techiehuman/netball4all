@@ -105,6 +105,18 @@ export class ProfilePage implements OnInit {
     
 
   }
-  
 
+  async takePicture() {
+    alert('clickded')
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+    var imageUrl = image.webPath;
+    // Can be set to the src of an image now
+    $("#profile-pic").attr("src",imageUrl);
+
+    //imageElement.src = imageUrl;
+  }
 }
