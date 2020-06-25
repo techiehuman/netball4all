@@ -15,7 +15,6 @@ export class LoginPage implements OnInit {
 
 public validations_form: FormGroup;
 public validation_messages = {};
-public isSubmitted = false;
 
 
   constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService){
@@ -62,7 +61,7 @@ public isSubmitted = false;
  /// constructor() { }
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
+      username: new FormControl('', Validators.compose([
         Validators.required
       ])),
       password: new FormControl('', Validators.compose([
@@ -72,7 +71,7 @@ public isSubmitted = false;
   }
 
   login(form){
-    this.isSubmitted = true;
+   // debugger;
 
     if (!this.validations_form.valid) {
       return false;
@@ -80,6 +79,8 @@ public isSubmitted = false;
       this.restService.login(form.value).subscribe((res)=>{
         if (res.id) {
           this.router.navigate(['app/tabs/id-card'])
+        }else {
+          alert("Wrong username or password.");
         }
       });
   

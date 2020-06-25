@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>-->
         <ion-content>
-            <form [formGroup]="validations_form" (ngSubmit)="login(form)" >
+            <form #form="ngForm" [formGroup]="validations_form" (ngSubmit)="login(form)" >
                 <ion-grid>
                   <ion-row>
                     <ion-col class="ion-text-center">
@@ -23,11 +23,11 @@
                     </ion-row>
                       <ion-row>   
                           <ion-col>
-                                  <ion-input formControlName="email"  name="email" type="email" placeholder="Username" class="login-fields"> 
+                                  <ion-input formControlName="username" name="username" type="email" placeholder="Username" class="login-fields"> 
                                       <ion-icon name="person"></ion-icon>
                                   </ion-input>
                           </ion-col>
-                          <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                          <span class="error ion-padding" *ngIf="isSubmitted && errorControl.username.errors?.required">
                             Username is required.
                           </span>
 
@@ -54,7 +54,7 @@
                           </ion-row>
                           <ion-row>
                             <ion-col>
-                                <ion-button expand="full" type="submit" >Login</ion-button>
+                                <ion-button expand="full" type="submit">Login</ion-button>
                             </ion-col>
                           </ion-row>
                         

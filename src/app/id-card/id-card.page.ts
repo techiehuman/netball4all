@@ -22,6 +22,10 @@ export class IdCardPage implements OnInit {
 
   constructor(public  restService: RestService) {
 
+   
+   }
+
+  ngOnInit() {
     this.restService.getPlayerDetailsById(1).subscribe(response => {
       console.log(response)
         this.player = response;
@@ -49,10 +53,6 @@ export class IdCardPage implements OnInit {
     console.log(this.stateName)
 
 });
-   }
-
-  ngOnInit() {
-   
   }
 
 }

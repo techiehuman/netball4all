@@ -6,6 +6,8 @@ export class Notifications {
 
     description: string;
 
+    created_at : Date;
+
     constructor(values: Object = {}) {
 
         Object.assign(this, values);

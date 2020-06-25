@@ -43,10 +43,32 @@ export class RestService {
     let api: string = "api/player-login";
 
     var formData: any = new FormData();
-    formData.append("username", data.email);
+    formData.append("username", data.username);
     formData.append("password", data.password);
   
     return  this.httpClient .post(this.baseUrl + api, formData).pipe(map((response: any)  => {
+        return  new  Player(response.data);
+    }));
+  }
+
+  public updateProfile(data,playerId: number) : Observable<Player> {
+    let api: string = "api/update-player-details/";
+
+    var formData: any = new FormData();
+    formData.append("username", data.emailaddress);
+    formData.append("picture", data.picture);
+    formData.append("team",data.team);
+    formData.append("mobile",data.mobile);
+    formData.append("state",data.state);
+    formData.append("street_address",data.street_address);
+    formData.append("subrub",data.subrub);
+    formData.append("postcode",data.postcode);
+    formData.append("emergency_phone_number",data.emergency_phone_number);
+    formData.append("emergency_contact_person",data.emergency_contact_person);
+
+
+    
+    return  this.httpClient .post(this.baseUrl + api+playerId, formData).pipe(map((response: any)  => {
         return  new  Player(response.data);
     }));
   }
