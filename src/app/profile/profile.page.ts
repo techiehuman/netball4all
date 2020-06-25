@@ -65,7 +65,12 @@ export class ProfilePage implements OnInit {
       format : 'jpeg | png | jpg'
     };
    }; */
-  ngOnInit() {
+
+   ngOnInit() {
+
+   }
+   
+   ionViewDidEnter() {
 
     //Lets First Find The States
     this.restService.getStateList().subscribe(response => {
@@ -110,8 +115,10 @@ export class ProfilePage implements OnInit {
     var imageUrl = image.webPath;
     // Can be set to the src of an image now
     $("#profile-pic").attr("src",imageUrl);
-      this.pictureData = CameraResultType.Uri;
+      this.pictureData = CameraResultType.Base64;
       alert(this.pictureData)
+      console.log(JSON.stringify(CameraResultType));
+      console.log(CameraResultType)
     //imageElement.src = imageUrl;
   }
 

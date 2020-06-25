@@ -18,9 +18,12 @@ export class LogoutPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.showConfirm();
 
   }
+  ionViewDidEnter() {
+    this.showConfirm();
+
+  } 
   async showConfirm() {
 
     let confirmRet = await Modals.confirm({

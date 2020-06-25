@@ -27,7 +27,11 @@ export class IdCardPage implements OnInit {
    
    }
 
-  ngOnInit() {
+   ngOnInit() {
+
+  }
+  
+  ionViewDidEnter() {
    // this.restService.getPlayerDetailsById(1).subscribe(response => {
     get("PlayerUser").then((response:Player) => {
       this.player  = response;
