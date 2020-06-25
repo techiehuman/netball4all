@@ -3,6 +3,8 @@ import { RestService } from '../rest.service';
 import { Player } from '../player';
 import { States } from '../states';
 import { Season } from '../season';
+import { get } from '../storage.service';
+
 
 @Component({
   selector: 'app-id-card',
@@ -26,9 +28,13 @@ export class IdCardPage implements OnInit {
    }
 
   ngOnInit() {
-    this.restService.getPlayerDetailsById(1).subscribe(response => {
-      console.log(response)
-        this.player = response;
+   // this.restService.getPlayerDetailsById(1).subscribe(response => {
+    get("PlayerUser").then((response:Player) => {
+      this.player  = response;
+    console.log(this.player);
+
+    });
+     
         if(this.player.is_financial == 0) {
           this.financial_status = "Unfinancial";
         } else {
@@ -52,9 +58,11 @@ export class IdCardPage implements OnInit {
           console.log(this.stateName)
       
         });
-    });
+   // });
 
     
   }
+
+ 
 
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {  FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { Plugins, CameraResultType } from '@capacitor/core';
-
+import { get,set, remove } from '../storage.service';
 
 
 
@@ -14,7 +14,6 @@ import * as $ from 'jquery';
 import { Player } from '../player';
 import { States } from '../states';
 import { Season } from '../season';
-import { sync } from 'glob';
 
 const { Camera } = Plugins;
 
@@ -71,27 +70,32 @@ export class ProfilePage implements OnInit {
     //Lets First Find The States
     this.restService.getStateList().subscribe(response => {
       this.states = response;
-    
         //Lets Fetch the Player Info Now.
-        this.restService.getPlayerDetailsById(1).subscribe(response => {
-          console.log(response)
-          this.player = response;
-          this.isSubmitted = true;
+       // this.restService.getPlayerDetailsById(1).subscribe(response => {
 
+
+          get("PlayerUser").then((response:Player) => {
+            this.player  = response;
+          console.log(this.player);
+
+          });
+          this.isSubmitted = true;
           if(this.player.is_financial == 0) {
             this.financial_status = "Unfinancial";
           } else {
             this.financial_status = "Financial";
           }
-          this.selectedState = this.player.state;
 
-          //Now Lets Get the Player Season after gettting player Info
           this.restService.getSeasonList().subscribe(response => {
             this.seasons = response;
-            console.log(this.seasons)
+          this.selectedState = this.player.state;
+
             this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
           });
-      });
+
+          //Now Lets Get the Player Season after gettting player Info
+         
+     // });
     });
 
     
@@ -106,7 +110,8 @@ export class ProfilePage implements OnInit {
     var imageUrl = image.webPath;
     // Can be set to the src of an image now
     $("#profile-pic").attr("src",imageUrl);
-      this.pictureData = CameraResultType.Base64;
+      this.pictureData = CameraResultType.Uri;
+      alert(this.pictureData)
     //imageElement.src = imageUrl;
   }
 
@@ -116,9 +121,12 @@ export class ProfilePage implements OnInit {
          form.value.picture = this.pictureData;
      }
      
-      console.log(form.value)
       this.restService.updateProfile(form.value, this.player.id).subscribe((res)=>{
         if (res.id) {
+          remove("PlayerUser");
+          set("PlayerUser",res);
+          alert(JSON.stringify(res));
+
           this.router.navigate(['app/tabs/id-card'])
         }else {
           alert("Something went wrong.");
@@ -129,4 +137,8 @@ export class ProfilePage implements OnInit {
   get errorControl() {
     return this.validations_form.controls;
   }
+
+  // async componentDidLoad() {
+    
+  // }
 }

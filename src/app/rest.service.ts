@@ -15,7 +15,7 @@ import { Notifications } from './notifications';
 })
 export class RestService {
 
-  baseUrl:string = "http://lyonsdemoz.website/netball4all/";
+  baseUrl:string = "https://lyonsdemoz.website/netball4all/";
  
   public seasonName : string = "";
   public stateName : string = "";

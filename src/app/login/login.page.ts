@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
+import {  set } from '../storage.service';
+
 
 
 
@@ -15,6 +17,7 @@ export class LoginPage implements OnInit {
 
 public validations_form: FormGroup;
 public validation_messages = {};
+
 
 
   constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService){
@@ -78,6 +81,7 @@ public validation_messages = {};
     } else {
       this.restService.login(form.value).subscribe((res)=>{
         if (res.id) {
+          set("PlayerUser",res);
           this.router.navigate(['app/tabs/id-card'])
         }else {
           alert("Wrong username or password.");
