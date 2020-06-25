@@ -128,7 +128,7 @@ export class RestService {
 
   public getSeasonName(seasonID:number, seasonList : Array<Season>) : string {
 
- 
+      console.log(seasonList)
         for(let i=0;i<seasonList.length;i++){
             if(seasonID == seasonList[i].id){
              this.seasonName = seasonList[i].season;
