@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from  '@angular/common/http';
+import { HttpClient, HttpHeaders } from  '@angular/common/http';
 import { Player } from './player';
 import { States } from './states';
 import { Observable } from 'rxjs';
@@ -48,6 +48,7 @@ export class RestService {
   
     alert(this.baseUrl + api);
     alert(JSON.stringify(data));
+
     return  this.httpClient .post(this.baseUrl + api, formData).pipe(map((response: any)  => {
       alert(JSON.stringify(response));
 
@@ -128,7 +129,7 @@ export class RestService {
 
   public getSeasonName(seasonID:number, seasonList : Array<Season>) : string {
 
-      console.log(seasonList)
+ 
         for(let i=0;i<seasonList.length;i++){
             if(seasonID == seasonList[i].id){
              this.seasonName = seasonList[i].season;

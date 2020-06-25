@@ -67,31 +67,34 @@ export class ProfilePage implements OnInit {
     };
    }; */
   ngOnInit() {
-   
+
+    //Lets First Find The States
     this.restService.getStateList().subscribe(response => {
       this.states = response;
-  });
-    this.restService.getSeasonList().subscribe(response => {
-      this.seasons = response;
-      console.log(this.seasons)
+    
+        //Lets Fetch the Player Info Now.
+        this.restService.getPlayerDetailsById(1).subscribe(response => {
+          console.log(response)
+          this.player = response;
+          this.isSubmitted = true;
 
-  });
-    this.restService.getPlayerDetailsById(1).subscribe(response => {
-      console.log(response)
-        this.player = response;
-      this.selectedState = this.player.state;
-    this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
-      console.log(this.seasonName)
-        if(this.player.is_financial == 0) {
-          this.financial_status = "Unfinancial";
-        } else {
-          this.financial_status = "Financial";
-        }
+          if(this.player.is_financial == 0) {
+            this.financial_status = "Unfinancial";
+          } else {
+            this.financial_status = "Financial";
+          }
+          this.selectedState = this.player.state;
+
+          //Now Lets Get the Player Season after gettting player Info
+          this.restService.getSeasonList().subscribe(response => {
+            this.seasons = response;
+            console.log(this.seasons)
+            this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
+          });
+      });
     });
 
     
-    
-
   }
 
   async takePicture() {
@@ -109,31 +112,18 @@ export class ProfilePage implements OnInit {
 
   updateProfile(form){
     // debugger;
-
-    if(form.value.emailaddress == "") {
-     this.isSubmitted = false;
-
-    } else {
-      this.isSubmitted = true;
-    }
      if(this.pictureData != '') {
          form.value.picture = this.pictureData;
      }
- 
-     if (!this.isSubmitted) {
-       alert("Email Address is empty.");
-       return false;
-     } else {
-       console.log(form.value)
-       this.restService.updateProfile(form.value, this.player.id).subscribe((res)=>{
-         if (res.id) {
-           this.router.navigate(['app/tabs/id-card'])
-         }else {
-           alert("Something went wrong.");
-         }
-       });
-   
-     }
+     
+      console.log(form.value)
+      this.restService.updateProfile(form.value, this.player.id).subscribe((res)=>{
+        if (res.id) {
+          this.router.navigate(['app/tabs/id-card'])
+        }else {
+          alert("Something went wrong.");
+        }
+      });
    }
 
   get errorControl() {

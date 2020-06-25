@@ -34,25 +34,27 @@ export class IdCardPage implements OnInit {
         } else {
           this.financial_status = "Financial";
         }
+
+        this.restService.getSeasonList().subscribe(response => {
+          this.seasons = response;
+        this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
+    
+          console.log(this.seasonName)
+    
+        });
+    
+        this.restService.getStateList().subscribe(response => {
+          this.states = response;
+          console.log("****")
+          console.log(this.states)
+          this.stateName = this.restService.getStateName(this.player.state, this.states);
+      
+          console.log(this.stateName)
+      
+        });
     });
 
-    this.restService.getSeasonList().subscribe(response => {
-      this.seasons = response;
-    this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
-
-      console.log(this.seasonName)
-
-  });
-
-  this.restService.getStateList().subscribe(response => {
-    this.states = response;
-    console.log("****")
-    console.log(this.states)
-    this.stateName = this.restService.getStateName(this.player.state, this.states);
-
-    console.log(this.stateName)
-
-});
+    
   }
 
 }

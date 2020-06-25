@@ -105,7 +105,7 @@
       </ion-row>
       <ion-row>
           <ion-col class="ion-text-justify">
-              <ion-input name="emailaddress" type="email" placeholder="Email Address" [(ngModel)]="player.emailaddress" [ngClass]="{'error-input' : !player.emailaddress || player.emailaddress == ''}"></ion-input> 
+              <ion-input name="emailaddress" type="email" placeholder="Email Address" [(ngModel)]="player.emailaddress" [ngClass]="{'error-input' : (!player.emailaddress || player.emailaddress == '') && isSubmitted == true }"></ion-input> 
           </ion-col>
           
         </ion-row>
