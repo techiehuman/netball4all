@@ -55,6 +55,7 @@ export class RestService {
     let api: string = "api/update-player-details/";
 
     var formData: any = new FormData();
+    console.log(data);
     formData.append("username", data.emailaddress);
     formData.append("picture", data.picture);
     formData.append("team",data.team);
@@ -66,9 +67,10 @@ export class RestService {
     formData.append("emergency_phone_number",data.emergency_phone_number);
     formData.append("emergency_contact_person",data.emergency_contact_person);
 
-
+    console.log(formData);
     
-    return  this.httpClient .post(this.baseUrl + api+playerId, formData).pipe(map((response: any)  => {
+    return  this.httpClient .put(this.baseUrl + api+playerId, data).pipe(map((response: any)  => {
+      console.log(response)
         return  new  Player(response.data);
     }));
   }

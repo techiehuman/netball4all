@@ -127,25 +127,27 @@ export class ProfilePage implements OnInit {
 
   updateProfile(form){
     // debugger;
-    if(form.emailaddress == "") {
+
+    if(form.value.emailaddress == "") {
      this.isSubmitted = false;
 
     } else {
       this.isSubmitted = true;
     }
      if(this.pictureData != '') {
-         form.picture = this.pictureData;
+         form.value.picture = this.pictureData;
      }
  
      if (!this.isSubmitted) {
-       alert("Email Address is empty");
+       alert("Email Address is empty.");
        return false;
      } else {
+       console.log(form.value)
        this.restService.updateProfile(form.value, this.player.id).subscribe((res)=>{
          if (res.id) {
            this.router.navigate(['app/tabs/id-card'])
          }else {
-           alert("Something went wrong");
+           alert("Something went wrong.");
          }
        });
    
