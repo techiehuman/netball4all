@@ -35,7 +35,7 @@
 
                           <ion-row>
                             <ion-col>
-                                    <ion-input formControlName="password"  name="password" type="password" placeholder="Password" class="login-fields">
+                                    <ion-input formControlName="password" name="password" type="password" placeholder="Password" class="login-fields" (keyup.enter)="closeKeyboard()">
                                         <ion-icon name="lock-closed"></ion-icon>
                                     </ion-input>
   

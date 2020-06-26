@@ -6,6 +6,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Plugins, CameraResultType } from '@capacitor/core';
 import { get,set, remove } from '../storage.service';
 
+const { Keyboard } = Plugins;
+
 
 
 
@@ -16,6 +18,7 @@ import { States } from '../states';
 import { Season } from '../season';
 
 const { Camera } = Plugins;
+
 
 
 
@@ -39,6 +42,8 @@ export class ProfilePage implements OnInit {
   public validation_messages = {};
   public isSubmitted = false;
   public pictureData : string = "";
+  public imageFile : File = null;
+
   //const { deleteFile, getUri, readFile, writeFile } = useFilesystem();
 
   public selectedState:number;
@@ -80,6 +85,8 @@ export class ProfilePage implements OnInit {
 
 
           get("PlayerUser").then((response:Player) => {
+            $("#profile-pic").attr("src",response.picture);
+
             this.player  = response;
           console.log(this.player);
 
@@ -110,29 +117,40 @@ export class ProfilePage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.DataUrl,
     });
-    var imageUrl = image.webPath;
+    
+    var imageUrl = image.path;
+    console.log("imageUrl : "+imageUrl);
     // Can be set to the src of an image now
-    $("#profile-pic").attr("src",imageUrl);
+    $("#profile-pic").attr("src",image.dataUrl);
       this.pictureData = CameraResultType.Base64;
-      alert(this.pictureData)
-      console.log(JSON.stringify(CameraResultType));
-      console.log(CameraResultType)
-    //imageElement.src = imageUrl;
+      //alert(this.pictureData)
+      console.log("mandeep : "+JSON.stringify(image));
+
+      //imageElement.src = imageUrl;
+
+    const imageName = "profile-"+this.player.registration_number+Date.now()+ '.'+image.format;
+    //console.log("goldy :"+imageName)
+    // call method that creates a blob from dataUri
+    //const imageBlob = this.dataURItoBlob(image);
+   
+    const imageBlob = this.dataURItoBlob(image.dataUrl);
+     this.imageFile = new File([imageBlob], imageName, { type: 'image/'+image.format })
   }
 
   updateProfile(form){
     // debugger;
      if(this.pictureData != '') {
-         form.value.picture = this.pictureData;
+         form.value.picture = this.imageFile;
+         console.log("form.value.picture : "+form.value.picture)
      }
      
       this.restService.updateProfile(form.value, this.player.id).subscribe((res)=>{
         if (res.id) {
           remove("PlayerUser");
           set("PlayerUser",res);
-          alert(JSON.stringify(res));
+          //alert(JSON.stringify(res));
 
           this.router.navigate(['app/tabs/id-card'])
         }else {
@@ -144,8 +162,81 @@ export class ProfilePage implements OnInit {
   get errorControl() {
     return this.validations_form.controls;
   }
+  closeKeyboard() {
+    Keyboard.hide();
+  }
+  dataURItoBlob(dataURI) {
+    console.log("NEHA "+dataURI);
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
 
-  // async componentDidLoad() {
-    
-  // }
+      console.log("Water : "+byteString)
+       // byteString = dataURI
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
+ /*b64toBlob  (b64Data, contentType='', sliceSize=512)  {
+  const byteCharacters = atob(b64Data);
+  const byteArrays = [];
+
+  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    const byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+
+  const blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+ } */
+
+ /*b64toBlob(base64Data, contentType) {
+  contentType = contentType || '';
+  var sliceSize = 512;
+  var byteCharacters = atob(decodeURIComponent(base64Data));
+  var bytesLength = byteCharacters.length;
+  var slicesCount = Math.ceil(bytesLength / sliceSize);
+  var byteArrays = new Array(slicesCount);
+
+  for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+      var begin = sliceIndex * sliceSize;
+      var end = Math.min(begin + sliceSize, bytesLength);
+
+      var bytes = new Array(end - begin);
+      for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
+          bytes[i] = byteCharacters[offset].charCodeAt(0);
+      }
+      byteArrays[sliceIndex] = new Uint8Array(bytes);
+  }
+  return new Blob(byteArrays, { type: contentType });
+ } */
+b64toBlob(imageBase64){
+  console.log(" imageBase64 ::::::: "+imageBase64)
+  const rawData = window.atob(imageBase64);
+const bytes = new Array(rawData.length);
+for (var x = 0; x < rawData.length; x++) {
+    bytes[x] = rawData.charCodeAt(x);
+}
+const arr = new Uint8Array(bytes);
+return new Blob([arr], {type: 'image/png'});
+}
+
 }

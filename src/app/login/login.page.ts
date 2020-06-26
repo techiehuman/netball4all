@@ -3,6 +3,9 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
 import {  set } from '../storage.service';
+import { Plugins } from '@capacitor/core';
+
+const { Keyboard } = Plugins;
 
 
 
@@ -94,6 +97,8 @@ public validation_messages = {};
   get errorControl() {
     return this.validations_form.controls;
   }
-
+  closeKeyboard() {
+    Keyboard.hide();
+  }
 
 }

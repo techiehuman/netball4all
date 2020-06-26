@@ -46,11 +46,11 @@ export class RestService {
     formData.append("username", data.username);
     formData.append("password", data.password);
   
-    alert(this.baseUrl + api);
-    alert(JSON.stringify(data));
+    //alert(this.baseUrl + api);
+    //alert(JSON.stringify(data));
 
     return  this.httpClient .post(this.baseUrl + api, formData).pipe(map((response: any)  => {
-      alert(JSON.stringify(response));
+      //alert(JSON.stringify(response));
 
         return  new  Player(response.data);
     }));

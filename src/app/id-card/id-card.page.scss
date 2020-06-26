@@ -98,7 +98,8 @@ ion-label.profile-type{
       border-top: 0.5px solid #CBC6C6;
       justify-content: left;
       padding-left: 10px;
-
+      text-align: left;
+    
   }
   .ion-col-left.last, .ion-col-right.last {
     border-bottom: 0.5px solid #CBC6C6;
@@ -114,30 +115,41 @@ ion-label.profile-type{
       padding-left: 17px;
   }
   .id-card-gray {
-      width:26.67px;
+      /*width:26.67px; */
       height : 20px;
       margin-right: 7.67px;
   }
   .calendar-gray {
-    width:26px;
+   /* width:26px; */
     height : 26px;
     margin-right: 7.67px;
 }
 .group-gray {
-    width:25.56px;
+   /* width:25.56px; */
     height : 21.68px;
     margin-right: 7.67px;
 }
 .gender-gray {
-    width:19.4px;
+   /* width:19.4px; */
     height : 19.4px;
     margin-right: 7.67px;
+}
+.post-code-gray{
+    height: 20px;
+    margin-right: 7.67px;
+}
+.emer-contact-gray {
+    height: 20px;
+    margin-right:15px;
 }
   .ion-grid-table {
       width : 100%;
       padding : 0px;
       margin: 0px;
 
+  }
+  .ion-col-left ion-img {
+      width: 30px;
   }
 
   
