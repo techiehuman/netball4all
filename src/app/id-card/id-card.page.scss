@@ -88,17 +88,18 @@ ion-label.profile-type{
     text-transform: capitalize;
 }
 .ion-col-left, .ion-col-right {
+    width: 50%;
     font-size: 16px;
     height: 47px;
+    word-break: break-all;
+    text-align: left !important;
   }
 
   .ion-col-left {
-      width: 50%;
       font-family: 'Roboto-Medium';
       border-top: 0.5px solid #CBC6C6;
       justify-content: left;
       padding-left: 10px;
-      text-align: left;
     
   }
   .ion-col-left.last, .ion-col-right.last {
@@ -106,13 +107,17 @@ ion-label.profile-type{
 
   } 
   .ion-col-right {
-      width: 50%;
-      font-family: 'Roboto-Light';
-      background : #ffffff;
-      border-top: 0.5px solid #CBC6C6;
-      border-left: 0.5px solid #CBC6C6;
-      justify-content: left;
-      padding-left: 17px;
+        font-family: 'Roboto-Light';
+        background : #ffffff;
+        border-top: 0.5px solid #CBC6C6;
+        border-left: 0.5px solid #CBC6C6;
+        justify-content: left;
+        padding-left: 17px;
+
+  }
+  .address-value{
+      height: 60px;
+      overflow: scroll;
   }
   .id-card-gray {
       /*width:26.67px; */

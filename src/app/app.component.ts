@@ -26,12 +26,13 @@ export class AppComponent {
       this.platform.ready().then(() => {
         this.statusBar.styleDefault();
         this.splashScreen.show();
-
-        
         get("PlayerUser").then((response:Player) => {
-          if (response.id) {
+          if (response != null && response.id) {
+
               this.router.navigate(['app/tabs/id-card']);
-          } else {
+
+          } else if(!window.location.toString().includes("forgot-password")) {
+
             this.router.navigate(['/']);
           }
       });

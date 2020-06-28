@@ -55,16 +55,7 @@
 
 <ion-grid>
 
-    <ion-row class="full">
-        <ion-col class="ion-text-left">
-          <ion-label class="ion-label-field">First Name:</ion-label>
-          <ion-label class="ion-label-value">&nbsp;&nbsp;{{player.firstname}}</ion-label>
-        </ion-col>
-        <ion-col class="ion-text-left">
-            <ion-label class="ion-label-field">Last Name:</ion-label>
-            <ion-label class="ion-label-value">&nbsp;&nbsp;{{player.lastname}}</ion-label>
-          </ion-col>
-      </ion-row>
+   
   <ion-row class="full">
     <ion-col class="ion-text-left">
       <ion-label class="ion-label-field">ID:</ion-label>
@@ -150,7 +141,7 @@
                   <ion-col class="ion-text-justify">
                       <ion-select name="state" placeholder="Select" value="{{selectedState}}" [(ngModel)]="selectedState">
                          
-                          <ion-select-option *ngFor="let item of states" value="{{item.id}}">{{item.name}}</ion-select-option>
+                          <ion-select-option *ngFor="let item of states" value="{{item.id}}" > {{item.name}}</ion-select-option>
 
                         </ion-select>
                   </ion-col>

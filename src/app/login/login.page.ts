@@ -20,6 +20,7 @@ export class LoginPage implements OnInit {
 
 public validations_form: FormGroup;
 public validation_messages = {};
+public isSubmitted:boolean = false;
 
 
 
@@ -78,7 +79,7 @@ public validation_messages = {};
 
   login(form){
    // debugger;
-
+    this.isSubmitted = true;
     if (!this.validations_form.valid) {
       return false;
     } else {

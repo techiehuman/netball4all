@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Season } from './season';
 import { Notifications } from './notifications';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
+
+
 
 
 
@@ -56,29 +59,32 @@ export class RestService {
     }));
   }
 
-  public updateProfile(data,playerId: number) : Observable<Player> {
-    let api: string = "api/update-player-details/";
+  public updateProfileOld(formData,playerId: number) : Observable<Player> {
+    let api: string = "api/update-player-details-api/";
 
-    var formData: any = new FormData();
-    console.log(data);
-    formData.append("username", data.emailaddress);
-    formData.append("picture", data.picture);
-    formData.append("team",data.team);
-    formData.append("mobile",data.mobile);
-    formData.append("state",data.state);
-    formData.append("street_address",data.street_address);
-    formData.append("subrub",data.subrub);
-    formData.append("postcode",data.postcode);
-    formData.append("emergency_phone_number",data.emergency_phone_number);
-    formData.append("emergency_contact_person",data.emergency_contact_person);
+    //var formData: any = new FormData();
+    //console.log(data);
+    
+    var headers = new HttpHeaders();
+    
+    headers.set("Accept", 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng');
+    headers.set('Content-Type', 'multipart/form-data; boundary=----WebKitFormBoundaryjTVjlQxTIJHpBWqu');
+    headers.set('enctype','multipart/form-data');
 
     console.log(formData);
-    
-    return  this.httpClient .put(this.baseUrl + api+playerId, data).pipe(map((response: any)  => {
+    let formData1:FormData = new FormData();
+      formData1 = formData;
+      console.log("formData");
+      console.log(formData1)
+      var options = { content: formData1 };
+      console.log(headers);
+
+    return  this.httpClient.post(this.baseUrl + api+playerId, formData1, {headers:headers}).pipe(map((response: any)  => {
       console.log(response)
         return  new  Player(response.data);
     }));
   }
+  
  
   sendPostRequest(username: string, password: string): Observable<Player> {
     var headers = new Headers();
@@ -150,5 +156,64 @@ export class RestService {
    
       return this.stateName;
 
+}
+
+public  updateProfile(data:any,playerId: number,imageName:string, callback) {
+
+let api: string = "api/update-player-details-api/";
+
+    var formData: any = new FormData();
+    console.log(data);
+    formData.append("emailaddress", data.emailaddress);
+    if(imageName!="") {
+        formData.append("picture", data.picture, imageName);
+    }
+    formData.append("team",data.team);
+    formData.append("mobile",data.mobile);
+    formData.append("state",data.state);
+    formData.append("street_address",data.street_address);
+    formData.append("subrub",data.subrub);
+    formData.append("postcode",data.postcode);
+    formData.append("emergency_phone_number",data.emergency_phone_number);
+    formData.append("emergency_contact_person",data.emergency_contact_person);
+
+    
+     var response = new XMLHttpRequest();
+     
+     response.open("POST", this.baseUrl + api+playerId, true);
+     response.send(formData);
+
+     response.onreadystatechange =  function(oEvent)  {
+       if (this.readyState==4 && response.status == 200) {
+       //  console.log("response ::::"+JSON.stringify(response.response))
+         console.log(response.response.data)
+     // alert(JSON.stringify(response.response.data));
+        if(callback) callback(JSON.parse(response.response).data);
+      //return new Player(response.response.data);
+
+       } else {
+        console.log(JSON.stringify(response))
+      }
+
+    };
+   
+
+
+}
+
+public forgotPassword(data) : Observable<any> {
+  let api: string = "api/forgot-password";
+
+  var formData: any = new FormData();
+  formData.append("emailaddress", data.emailaddress);
+
+  //alert(this.baseUrl + api);
+  //alert(JSON.stringify(data));
+
+  return  this.httpClient .post(this.baseUrl + api, formData).pipe(map((response: any)  => {
+    //alert(JSON.stringify(response));
+    console.log(response)
+      return (response);
+  }));
 }
 }

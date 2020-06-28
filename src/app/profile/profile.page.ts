@@ -8,9 +8,6 @@ import { get,set, remove } from '../storage.service';
 
 const { Keyboard } = Plugins;
 
-
-
-
 //import { $ } from 'protractor';
 import * as $ from 'jquery';
 import { Player } from '../player';
@@ -18,9 +15,6 @@ import { States } from '../states';
 import { Season } from '../season';
 
 const { Camera } = Plugins;
-
-
-
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +24,6 @@ const { Camera } = Plugins;
 })
 export class ProfilePage implements OnInit {
 
-  private todo: FormGroup;
   public pageData = {};
   public pageDataStatus = {};
   public player: Player = new Player();
@@ -42,40 +35,21 @@ export class ProfilePage implements OnInit {
   public validation_messages = {};
   public isSubmitted = false;
   public pictureData : string = "";
-  public imageFile : File = null;
-
-  //const { deleteFile, getUri, readFile, writeFile } = useFilesystem();
-
+  public imageFile : File;
+  public imageName : string = "";
   public selectedState:number;
 
-  constructor(private router: Router, private formBuilder : FormBuilder,
+  constructor(public router: Router, private formBuilder : FormBuilder,
     public  restService: RestService, private ref: ChangeDetectorRef){  
       
       
   }
   
-   /*savePicture = async (photo: CameraPhoto, fileName: string): Promise<CameraPhoto> => {
-    const base64Data = await base64FromPath(photo.webPath!);
-    const savedFile = await writeFile({
-      path: fileName,
-      data: base64Data,
-      directory: FilesystemDirectory.Data
-    });
-  
-    // Use webPath to display the new image instead of base64 since it's
-    // already loaded into memory
-    return {
-      path:fileName,
-      webPath : photo.webPath,
-      format : 'jpeg | png | jpg'
-    };
-   }; */
-
    ngOnInit() {
 
    }
    
-   ionViewDidEnter() {
+   ngAfterViewInit() {
 
     //Lets First Find The States
     this.restService.getStateList().subscribe(response => {
@@ -83,12 +57,15 @@ export class ProfilePage implements OnInit {
         //Lets Fetch the Player Info Now.
        // this.restService.getPlayerDetailsById(1).subscribe(response => {
 
-
           get("PlayerUser").then((response:Player) => {
             $("#profile-pic").attr("src",response.picture);
 
             this.player  = response;
-          console.log(this.player);
+            console.log("state id : "+this.player.state)
+            this.selectedState = this.player.state;
+            console.log("selectedState: "+this.player.state)
+
+          //console.log(this.player);
 
           });
           this.isSubmitted = true;
@@ -100,8 +77,7 @@ export class ProfilePage implements OnInit {
 
           this.restService.getSeasonList().subscribe(response => {
             this.seasons = response;
-          this.selectedState = this.player.state;
-
+            
             this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
           });
 
@@ -124,19 +100,19 @@ export class ProfilePage implements OnInit {
     console.log("imageUrl : "+imageUrl);
     // Can be set to the src of an image now
     $("#profile-pic").attr("src",image.dataUrl);
-      this.pictureData = CameraResultType.Base64;
-      //alert(this.pictureData)
-      console.log("mandeep : "+JSON.stringify(image));
+      this.pictureData = "sss";
+     // console.log("mandeep : "+JSON.stringify(image));
 
       //imageElement.src = imageUrl;
 
-    const imageName = "profile-"+this.player.registration_number+Date.now()+ '.'+image.format;
-    //console.log("goldy :"+imageName)
+    this.imageName = "profile-"+this.player.registration_number+Date.now()+ '.'+image.format;
+    console.log("goldy :"+this.imageName)
     // call method that creates a blob from dataUri
-    //const imageBlob = this.dataURItoBlob(image);
-   
     const imageBlob = this.dataURItoBlob(image.dataUrl);
-     this.imageFile = new File([imageBlob], imageName, { type: 'image/'+image.format })
+   console.log(imageBlob);
+    //const imageBlob = this.b64toBlob(image.base64String);
+     this.imageFile = new File([imageBlob], this.imageName, { type: 'image/'+image.format })
+     console.log(this.imageFile)
   }
 
   updateProfile(form){
@@ -146,18 +122,44 @@ export class ProfilePage implements OnInit {
          console.log("form.value.picture : "+form.value.picture)
      }
      
-      this.restService.updateProfile(form.value, this.player.id).subscribe((res)=>{
+     this.restService.updateProfile(form.value, this.player.id,this.imageName,this.callback);
+
+     //{
+     /* this.restService.updateProfileDemo(form.value, this.player.id,this.imageName).then((res:Player) => {
+      console.log("res :::"+res)
+
         if (res.id) {
           remove("PlayerUser");
           set("PlayerUser",res);
           //alert(JSON.stringify(res));
-
+          alert(JSON.stringify(res));
+          console.log(res)
+          console.log(get("PlayerUser"));
           this.router.navigate(['app/tabs/id-card'])
         }else {
           alert("Something went wrong.");
         }
-      });
+    }); */
+       
+     
+       
+     // }
    }
+
+   callback = ((res) => {
+   //  debugger;
+      console.log("callback response  :"+res);
+      if (res.id) {
+        remove("PlayerUser");
+        set("PlayerUser",res);
+        //alert(JSON.stringify(res));
+        console.log(res)
+        console.log(get("PlayerUser"));
+        this.router.navigate(['app/tabs/id-card'])        
+      }else {
+        alert("Something went wrong.");
+      }
+   });
 
   get errorControl() {
     return this.validations_form.controls;
