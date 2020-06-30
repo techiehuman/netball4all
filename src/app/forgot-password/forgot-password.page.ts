@@ -21,7 +21,7 @@ public emailSent: boolean = false;
 public resultMessage:string = "";
 public isSubmitted:boolean = false;
 
-  constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService, formsModule: FormsModule) { }
+  constructor(public router: Router, private formBuilder : FormBuilder, private restService: RestService, formsModule: FormsModule) { }
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
@@ -55,6 +55,10 @@ public isSubmitted:boolean = false;
   closeKeyboard() {
     Keyboard.hide();
   }
+  returnToLogin=()=>{
+    this.router.navigate(['/'])
+
+  };
 
 
 }

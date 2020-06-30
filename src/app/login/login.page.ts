@@ -101,5 +101,9 @@ public isSubmitted:boolean = false;
   closeKeyboard() {
     Keyboard.hide();
   }
+  returnToForgot=()=>{
+    this.router.navigate(['/forgot-password'])
+
+  };
 
 }

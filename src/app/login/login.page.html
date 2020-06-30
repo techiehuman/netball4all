@@ -3,7 +3,7 @@
     <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header>-->
-        <ion-content>
+        <ion-content class="main-content">
             <form #form="ngForm" [formGroup]="validations_form" (ngSubmit)="login(form)" >
                 <ion-grid>
                   <ion-row>
@@ -17,18 +17,18 @@
                       <ion-col>
                         <div ion-text-center>
                           <h5 class="ion-text-center">Proceed with your</h5>
-                          <h3 class="ion-text-center login-h3">Login</h3>
+                          <h3 class="ion-text-center tag-h3">Login</h3>
                         </div>
                       </ion-col>
                     </ion-row>
                       <ion-row>   
                           <ion-col>
-                                  <ion-input formControlName="username" name="username" type="email" placeholder="Username" class="login-fields"> 
+                                  <ion-input formControlName="username" name="username" type="email" placeholder="Email Address" class="login-fields"> 
                                       <ion-icon name="person"></ion-icon>
                                   </ion-input>
                           </ion-col>
                           <span class="error ion-padding" *ngIf="isSubmitted && errorControl.username.errors?.required">
-                            Username is required.
+                            Email Address is required.
                           </span>
 
                       </ion-row>
@@ -48,8 +48,8 @@
                         
                           <ion-row class="forgot-row">
                             <ion-col>
-                              <ion-router-link href="/forgot-password" routerDirection="forward">
-                              Forgot Password?</ion-router-link>
+                              <ion-anchor (click)="returnToForgot()">
+                              Forgot Password?</ion-anchor>
                             </ion-col>
                           </ion-row>
                           <ion-row>

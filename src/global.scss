@@ -165,5 +165,50 @@ ion-button {
  .error {
       color: #ffffff;
   }
+.main-content .tag-h3 {
+  font-size: 23px;
+  font-family: 'Roboto-Bold';
+  text-transform: uppercase;
+}
+.main-content ion-col {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  justify-self: center;
+  justify-items: center;
+  flex: auto;
+}
+.main-content ion-anchor {
+  margin-left: 10px;
+  font-size: 16px;
+  font-family: 'Roboto-Regular';
+}
+.main-content .logo {
+  width :224px; height: 224px; display: inline-block;
+}
+.main-content .input-img {
+  width: 24px;
+  height: 24px;
+}
+.main-content .login-fields {
+  flex-direction: row-reverse;
+}
 
+ion-content.main-content{
+
+  --ion-background-color:#111E6C;
+}
+.main-content .login-btn,.main-content ion-button {
+  --background: #ffffff;
+  color: #111E6C;
+  font-family: "Roboto-Bold";
+  font-size: 20px;
+  text-transform: capitalize;
+  height: 53px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 100%;
+
+}
 
