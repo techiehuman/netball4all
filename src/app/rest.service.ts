@@ -157,6 +157,17 @@ export class RestService {
       return this.stateName;
 
 }
+public getStateCodeName(stateID:number, stateList : Array<States>) : string {
+
+  for(let i=0;i<stateList.length;i++){
+      if(stateID == stateList[i].id){
+       this.stateName = stateList[i].state_code;
+      }
+  }
+ 
+    return this.stateName;
+
+}
 
 public  updateProfile(data:any,playerId: number,imageName:string, callback) {
 

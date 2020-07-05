@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
-import {  set } from '../storage.service';
+import {  set, remove } from '../storage.service';
 import { Plugins } from '@capacitor/core';
+import { MiscService } from '../misc.service';
 
 const { Keyboard } = Plugins;
 
@@ -24,7 +25,7 @@ public isSubmitted:boolean = false;
 
 
 
-  constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService){
+  constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService, public miscService : MiscService){
   /* this.validations_form = this.formBuilder.group({
       username : new FormControl('username', Validators.compose([
         Validators.required,
@@ -83,9 +84,13 @@ public isSubmitted:boolean = false;
     if (!this.validations_form.valid) {
       return false;
     } else {
+      this.miscService.presentLoading("logging in...");
       this.restService.login(form.value).subscribe((res)=>{
         if (res.id) {
+          remove("PlayerUser");
           set("PlayerUser",res);
+          this.miscService.dismissLoading();
+
           this.router.navigate(['app/tabs/id-card'])
         }else {
           alert("Wrong username or password.");
@@ -105,5 +110,7 @@ public isSubmitted:boolean = false;
     this.router.navigate(['/forgot-password'])
 
   };
+
+  
 
 }

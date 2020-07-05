@@ -6,6 +6,8 @@ export class States {
 
     country_id: number;
 
+    state_code : string;
+
     constructor(values: Object = {}) {
 
         Object.assign(this, values);

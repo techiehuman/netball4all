@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.lyons.netball4all",
   "appName": "netball4all",
   "bundledWebRuntime": false,
   "npmClient": "npm",
