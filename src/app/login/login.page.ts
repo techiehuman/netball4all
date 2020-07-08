@@ -95,6 +95,7 @@ public isSubmitted:boolean = false;
         }else {
           alert("Wrong username or password.");
         }
+        this.miscService.dismissLoading();
       });
   
     }

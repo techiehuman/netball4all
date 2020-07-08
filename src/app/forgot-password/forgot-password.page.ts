@@ -5,10 +5,9 @@ import { RestService } from '../rest.service';
 import { Plugins, Toast } from '@capacitor/core';
 import * as $ from 'jquery';
 import { LoadingController } from '@ionic/angular';
-//import { $ } from 'protractor';
+import { MiscService } from '../misc.service';
 
 const { Keyboard } = Plugins;
-let loading:any= null;
 
 
 @Component({
@@ -24,7 +23,7 @@ public emailSent: boolean = false;
 public resultMessage:string = "";
 public isSubmitted:boolean = false;
 
-  constructor(public router: Router, private formBuilder : FormBuilder, private restService: RestService, formsModule: FormsModule, public loadingController: LoadingController) { }
+  constructor(public router: Router, private formBuilder : FormBuilder, private restService: RestService, formsModule: FormsModule, public loadingController: LoadingController, public miscService : MiscService) { }
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
@@ -39,13 +38,12 @@ public isSubmitted:boolean = false;
      if (!this.validations_form.valid) {
        return false;
      } else {
-    this.presentLoading();
+    this.miscService.presentLoading("");
 
        this.restService.forgotPassword(form.value).subscribe((res)=>{
          console.log(res)
          if (res.status=="success") {
             this.emailSent=true;
-            loading.dismiss();
             $("#forgot-message").text(res.message+".");
             Toast.show({
               text: 'Email Verfication Link sent!'
@@ -56,8 +54,10 @@ public isSubmitted:boolean = false;
            alert("Email address does not exist");
            
          }
+         this.miscService.dismissLoading();
+         
        });
-   
+       
      }
    }
   get errorControl() {
@@ -66,18 +66,14 @@ public isSubmitted:boolean = false;
  
   returnToLogin=()=>{
     this.router.navigate(['/'])
+};
 
-  };
-
-
-async presentLoading() {
-  loading = await this.loadingController.create({
-  /* cssClass: 'loader-message', */
-   message: 'Please wait...',
-  /* duration: 2000 */
- });
-  loading.present();
+closeKeyboard() {
+  Keyboard.hide();
 }
+
+
+
 
 
 }
