@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "302546325241",
+    "firebase_url": "https://netball4all-20e17.firebaseio.com",
+    "project_id": "netball4all-20e17",
+    "storage_bucket": "netball4all-20e17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302546325241:android:c62aa0a97e666328e0dc28",
+        "android_client_info": {
+          "package_name": "com.lyons.netball4all"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302546325241-bk7r926v7438hnkdij1hph6b76itfqk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIHPFWw359be-5Qu8T8ddUIE85bg0rDkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302546325241-bk7r926v7438hnkdij1hph6b76itfqk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
