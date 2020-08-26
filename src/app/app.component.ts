@@ -29,6 +29,9 @@ export class AppComponent {
         get("PlayerUser").then((response:Player) => {
           if (response != null && response.id) {
 
+            if(response.approved_for_next_season == 0) {
+              this.router.navigate(['app/tabs/register-competition']);
+            } else
               this.router.navigate(['app/tabs/id-card']);
 
           } else if(!window.location.toString().includes("forgot-password")) {

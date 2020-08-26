@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../id-card/id-card.module').then(m => m.IdCardPageModule)
       },
       {
+        path: 'register-competition',
+        loadChildren: () => import('../register-competition/register-competition.module').then(m => m.RegisterCompetitionPageModule)
+      },
+      {
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },

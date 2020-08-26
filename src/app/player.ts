@@ -38,6 +38,7 @@ export class Player {
 
     season_id : number;
 
+    approved_for_next_season : number;
 
     constructor(values: Object = {}) {
 

@@ -3,10 +3,15 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
 import {  set, remove } from '../storage.service';
-import { Plugins } from '@capacitor/core';
-import { MiscService } from '../misc.service';
 
-const { Keyboard } = Plugins;
+import { MiscService } from '../misc.service';
+import { Platform } from '@ionic/angular';
+import { Plugins,PushNotification,
+  PushNotificationToken,
+  PushNotificationActionPerformed  } from '@capacitor/core';
+
+
+const { Keyboard,PushNotifications } = Plugins;
 
 
 
@@ -22,10 +27,13 @@ export class LoginPage implements OnInit {
 public validations_form: FormGroup;
 public validation_messages = {};
 public isSubmitted:boolean = false;
+public deviceToken : String = "";
+public platformType : String = "";
 
 
 
-  constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService, public miscService : MiscService){
+
+  constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService, public miscService : MiscService,public platform: Platform){
   /* this.validations_form = this.formBuilder.group({
       username : new FormControl('username', Validators.compose([
         Validators.required,
@@ -76,8 +84,54 @@ public isSubmitted:boolean = false;
         Validators.required
       ]))
     });
-  }
+     // Request permission to use push notifications
+    // iOS will prompt user and return if they granted permission or not
+    // Android will just grant without prompting
+    PushNotifications.requestPermission().then( result => {
+      if (result.granted) {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
 
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener('registration',
+      (token: PushNotificationToken) => {
+        //alert('Push registration success, token: ' + token.value);
+        console.log('Push registration success, token: ' + token.value)
+        this.deviceToken = token.value;
+      });
+    // Some issue with our setup and push will not work
+    PushNotifications.addListener('registrationError',
+      (error: any) => {
+        console.log('Error on registration: ' + JSON.stringify(error));
+      }
+    );
+
+    // Show us the notification payload if the app is open on our device
+    PushNotifications.addListener('pushNotificationReceived',
+      (notification: PushNotification) => {
+        console.log('Push received: ' + JSON.stringify(notification));
+
+      }
+    );
+
+    // Method called when tapping on a notification
+    PushNotifications.addListener('pushNotificationActionPerformed',
+      (notification: PushNotificationActionPerformed) => {
+        console.log('Push action performed: ' + JSON.stringify(notification));
+       // alert('clicked')
+        this.router.navigate(['app/tabs/notification'])
+
+      }
+    );
+
+  }
+  ionViewDidEnter() {
+     this.platformType = this.platform.is("android") ? "ANDROID" : "IOS";
+  }
   login(form){
    // debugger;
     this.isSubmitted = true;
@@ -90,8 +144,12 @@ public isSubmitted:boolean = false;
           remove("PlayerUser");
           set("PlayerUser",res);
           this.miscService.dismissLoading();
+          this.restService.saveDeviceToken(this.deviceToken, this.platformType, res.id,this.callback);
+          if(res.approved_for_next_season == 0) {
+            this.router.navigate(['app/tabs/register-competition']);
+          } else
+          this.router.navigate(['app/tabs/id-card']);
 
-          this.router.navigate(['app/tabs/id-card'])
         }else {
           alert("Wrong username or password.");
         }
@@ -111,7 +169,9 @@ public isSubmitted:boolean = false;
     this.router.navigate(['/forgot-password'])
 
   };
-
+  callback = ((res) => {
+    console.log(res);
+  });
   
 
 }

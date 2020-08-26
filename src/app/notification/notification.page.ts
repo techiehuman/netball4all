@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { Notifications } from '../notifications';
-import { IonRefresher } from '@ionic/angular';
 
 
 @Component({
@@ -45,11 +44,40 @@ export class NotificationPage implements OnInit {
   }
   loadNotifications(){
     this.restService.getNotifications().subscribe(response => {
-      console.log(response)
+     // console.log(response)
+
+      
       this.notifications = response; 
+      for(var i =0;i<this.notifications.length;i++) {
+        var stringDate : String = this.notifications[i]['created_at'];
+        let date = new Date(stringDate.replace(' ', 'T'));
+        console.log( date.getDay());
+        console.log(date.getFullYear());
+        console.log(date.getMonth());
+        var month = date.getMonth()+1;
+        this.notifications[i]['date_created_at'] = this.str_pad(date.getDate())+' - '+this.str_pad(month)+' - '+date.getFullYear();
+        this.notifications[i]['time_created_at'] = this.formatAMPM(date);
+
+      }
+      console.log(this.notifications);
     }); 
 
 
   }
+
+   formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + '' + ampm;
+    return strTime;
+  }
+
+   str_pad(n) {
+    return String("00" + n).slice(-2);
+}
 
 }

@@ -8,13 +8,12 @@ ion-content, .ion-grid-strips ion-row{
 .round-row {
     width: 119px;
     height: 119px;
-    border-radius: 100%;
+    overflow: hidden;
+    border-radius: 50%;
     border: 5px #ffffff solid;
-    background:#ffffff;
-    box-shadow: 0px 3px 6px #00000029;  
+    background: #ffffff;
+    box-shadow: 0px 3px 6px #00000029;
     position: absolute;
-    /*margin-top: -12px;
-    margin-left: 75px; */
 
 }
 .ion-row-1 div, .ion-row-2 div, .ion-row-3 div{
@@ -99,9 +98,8 @@ ion-title {
 }
 .team-strip {
     height: 30px;
-    background: #ffffff;
 }
-.team-strip ion-button {
+.team-strip ion-label {
     height: 30px;
     margin-block-start: 0px;
     margin-inline-start: 0px;
@@ -115,7 +113,7 @@ ion-title {
 
 ion-radio, button {
     --color: #ffffff;
-    --color-checked:#111E6C;
+    --color-checked:#ffffff;
 
     --background: #ffffff;
     background: #ffffff;
@@ -139,8 +137,44 @@ ion-radio, button {
     --border-width: 0px;
     --inner-border-radius: 100%;
     text-align: center;
+    border: 1px solid #fff;
+
+  }
+  ion-radio:checked, .radio-checked{
+    --color-checked:#111E6C;
+
+    --background: #111E6C;
+    background: #111E6C;
 
   }
   ion-radio-group {
       margin-left: 5px;
   }
+  .profile-pic{
+    width: 100%;
+    border-radius: 50%;
+    height: 119px;
+    object-fit: cover;
+}
+
+.input-team{
+    border: none;
+    height: 30px;
+    width: 72%;
+    padding-left: 10px;
+}
+.label-team {
+    background: #111E6C;
+    padding: 6px 20px;
+    height: 30px;
+    font-family: "Roboto-Medium";
+    font-size: 16px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 0px;
+}
+.error {
+    color: #ff0000;
+    font-size: 12px;
+    
+}

@@ -1,10 +1,16 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="id-card">
+
+    <ion-tab-button tab="id-card" *ngIf="idCardEnable==true"> 
       <ion-img src="assets/images/id-card.png" class="id-card-img"></ion-img>
       <ion-label>ID Card</ion-label>
     </ion-tab-button>
+
+    <ion-tab-button tab="register-competition" *ngIf="idCardEnable==false">
+        <ion-img src="assets/images/id-card.png" class="id-card-img"></ion-img>
+        <ion-label>ID Card</ion-label>
+      </ion-tab-button>
 
     <ion-tab-button tab="profile">
       <ion-img src="assets/images/profile.png" class="profile-img"></ion-img>

@@ -16,12 +16,10 @@
       <ion-col class="col-strips">
           <div class="img-container">
               
-              <div class="round-row">
-                  <ion-icon name="skull" color="danger"></ion-icon>
-                  <div class="camera-icon ion-text-center">
-                      <ion-img src="assets/images/camera-icon.png" class="ion-text-center"></ion-img>
-                  </div>
-              </div>
+            <div class="round-row">
+              <ion-img src="{{player.picture}}" class="ion-text-center profile-pic"></ion-img>
+
+          </div>
               <ion-grid class="ion-grid-strips">
                   
                   <ion-row class="ion-row-1"> 
@@ -43,23 +41,53 @@
 
 <ion-row class="ion-row-label">
   <ion-col>
-    <ion-label class="user-name">Ann maree Kopos</ion-label>
+    <ion-label class="user-name">{{player.firstname}} {{player.lastname}}</ion-label>
   </ion-col>
 </ion-row>
 
 <!---</ion-grid>
 <ion-grid>-->
+    <form #form="ngForm" [formGroup]="validations_form" (ngSubmit)="register(form)" >
+
   <ion-row class="full ion-margin-bottom ion-margin-start">
     <ion-col class="ion-text-left">
-        <ion-radio-group [(ngModel)]="gender" name="gender">
-                <ion-radio value="Male"></ion-radio> 
+        <ion-radio-group [(ngModel)]="season" name="season" formControlName="season" required>
+                <ion-radio value="false"></ion-radio> 
                 </ion-radio-group>
-      <ion-label class="radio-button-text ion-margin-start">I want to register for next/current season</ion-label>
+      <ion-label class="radio-button-text ion-margin-start">Register for next/current season</ion-label>
+      <div class="error ion-padding" *ngIf="isSubmitted && errorControl.season.errors?.required">
+          Need to check this before submitting the form.
+        </div>
     </ion-col>
   </ion-row>
-  <ion-row class="team-strip full ion-margin-start ion-margin-end">
-      <ion-button class="ion-text-left">Team</ion-button>
-  </ion-row>
+  <ion-grid>
+    <ion-row class="team-strip full ion-margin-start ion-margin-end">
+      <ion-col class="ion-text-left">
+        <ion-label class="ion-text-left label-team">Team</ion-label>
+        <input type="hidden" name="_method" value="PUT">
+        <input type="text" name="teamname" formControlName="teamname" class="input-team full" required (keyup.enter)="closeKeyboard()"/>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+        <div class="error ion-padding" *ngIf="isSubmitted && errorControl.teamname.errors?.required">
+            Team Name is required.
+          </div>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row class="full ion-margin-top ion-margin-start">
+      <ion-col class="ion-text-left">
+          <ion-radio-group [(ngModel)]="details" name="details" formControlName="details" required>
+                  <ion-radio value="false"></ion-radio> 
+                  </ion-radio-group>
+        <ion-label class="radio-button-text ion-margin-start">My details are unchanged</ion-label>
+      </ion-col>
+      <div class="error ion-padding" *ngIf="isSubmitted && errorControl.details.errors?.required">
+          Need to check this before submitting the form.
+        </div>
+    </ion-row>
+  
   <ion-row class="ion-margin-top ion-margin-start ion-margin-end">
     <ion-col class="ion-text-left">
         <ion-label class="ion-label-desc">
@@ -77,10 +105,11 @@
   </ion-row>
   <ion-row>
     <ion-col class="ion-text-right">
-        <ion-button type="submit">Submit</ion-button>
+        <ion-button type="submit" name="submit" value="submit">Submit</ion-button>
 
     </ion-col>
   </ion-row>
+</form>
 </ion-grid>
 
 </ion-content>

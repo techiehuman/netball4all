@@ -6,7 +6,7 @@ export class Notifications {
 
     description: string;
 
-    created_at : Date;
+    created_at : string;
 
     constructor(values: Object = {}) {
 

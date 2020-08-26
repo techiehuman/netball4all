@@ -227,4 +227,75 @@ public forgotPassword(data) : Observable<any> {
       return (response);
   }));
 }
+
+
+public saveDeviceToken(deviceToken:String, platformType : String, userid:Number,callback)  {
+
+  var formData: any = new FormData();
+  
+formData.append("userid",userid);
+formData.append("app_platform",platformType);
+formData.append("device_token",deviceToken);
+  var response = new XMLHttpRequest();
+  let api: string = "api/manage-users-device-token";
+  response.open("POST", this.baseUrl + api, true);
+  response.send(formData);
+
+  response.onreadystatechange =  function(oEvent)  {
+    if (this.readyState==4 && response.status == 200) {
+    //  console.log("response ::::"+JSON.stringify(response.response))
+      console.log(response.response.data)
+  // alert(JSON.stringify(response.response.data));
+     if(callback) callback(JSON.parse(response.response).data);
+   //return new Player(response.response.data);
+
+    } else {
+     console.log(JSON.stringify(response))
+   }
+
+ };
+
+}
+
+public  updatePlayerSeason(playerId: number,data:any, callback) {
+
+  let api: string = "api/update-player-season/";
+  
+      var formData: any = new FormData();
+      formData.append("team", data.teamname);
+      formData.append("_method","PUT");
+      formData.append("submit","submit");
+      
+      var response = new XMLHttpRequest();
+       response.open("POST", this.baseUrl + api+playerId, true);
+       response.send(formData);
+  
+       response.onreadystatechange =  function(oEvent)  {
+         if (this.readyState==4 && response.status == 200) {
+           console.log(response.response.data)
+          if(callback) callback(JSON.parse(response.response).data);
+  
+         } else {
+          console.log(JSON.stringify(response))
+        }
+  
+      };
+  
+  }
+
+  public updatePlayerSeason2(playerId: number,data:any) : Observable<Player> {
+    let api: string = "api/update-player-season/";
+
+    var formData: any = new FormData();
+    formData.append("team", data.teamname);
+    formData.append("_method","PUT");
+  
+  
+
+    return  this.httpClient .put(this.baseUrl + api + playerId, formData).pipe(map((response: any)  => {
+
+        return  new  Player(response.data);
+    }));
+
+  }
 }
