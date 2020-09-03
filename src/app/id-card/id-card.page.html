@@ -17,10 +17,9 @@
       <ion-col class="col-strips">
         <div class="img-container">
             <div class="round-row">
-                <ion-img src="{{player.picture}}" class="ion-text-center profile-pic" *ngIf="player.picture != null || player.picture != ''"></ion-img>
-                <ion-icon name="person-outline" *ngIf="player.picture == null || player.picture == ''"></ion-icon>
+                <ion-img src="{{player.picture}}" class="ion-text-center profile-pic" *ngIf="player.picture != '' && player.picture != null"></ion-img>
+                <ion-icon name="person" class="user-grey-icon" *ngIf="player.picture == '' || player.picture == null"></ion-icon>
 
-              <!--  <ion-icon name="skull" color="danger"></ion-icon>-->
             </div>
             <ion-grid class="ion-grid-strips">
                 

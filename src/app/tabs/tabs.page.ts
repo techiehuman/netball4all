@@ -20,10 +20,10 @@ export class TabsPage {
       this.player  = response;
       if(this.player.approved_for_next_season == 1) {
 
-          this.idCardEnable = false;
+          this.idCardEnable = true;
 
       } else {
-        this.idCardEnable = true;
+        this.idCardEnable = false;
       }
 
     });

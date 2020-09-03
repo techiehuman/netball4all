@@ -18,8 +18,10 @@
       <ion-col class="col-strips">
           <div class="img-container">
               <div class="round-row">
-                <!-- <ion-img src="assets/images/demo-pic.jpeg" class="ion-text-center profile-pic"></ion-img>-->
-                 <ion-img [src]="player.picture" class="ion-text-center profile-pic" id="profile-pic"></ion-img>
+                <!-- <ion-img [src]="player.picture" class="ion-text-center profile-pic" id="profile-pic"></ion-img>-->
+                 <ion-img src="{{player.picture}}" class="ion-text-center profile-pic" id="profile-pic" *ngIf="player.picture != '' && player.picture != null"></ion-img>
+                 <ion-icon name="person" class="user-grey-icon" id="profile-pic" *ngIf="player.picture == '' || player.picture == null"></ion-icon>
+ 
                   
               </div>
               <div class="camera-icon ion-text-center" (click)="takePicture()">

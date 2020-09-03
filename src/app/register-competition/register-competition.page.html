@@ -17,7 +17,9 @@
           <div class="img-container">
               
             <div class="round-row">
-              <ion-img src="{{player.picture}}" class="ion-text-center profile-pic"></ion-img>
+              <ion-img src="{{player.picture}}" class="ion-text-center profile-pic" *ngIf="player.picture != '' && player.picture != null"></ion-img>
+              <ion-icon name="person" class="user-grey-icon" *ngIf="player.picture == '' || player.picture == null"></ion-icon>
+
 
           </div>
               <ion-grid class="ion-grid-strips">
