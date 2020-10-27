@@ -44,7 +44,7 @@ export class NotificationPage implements OnInit {
   }
   loadNotifications(){
     this.restService.getNotifications().subscribe(response => {
-     // console.log(response)
+    //  console.log(response)
 
       
       this.notifications = response; 
@@ -57,6 +57,7 @@ export class NotificationPage implements OnInit {
         var month = date.getMonth()+1;
         this.notifications[i]['date_created_at'] = this.str_pad(date.getDate())+' - '+this.str_pad(month)+' - '+date.getFullYear();
         this.notifications[i]['time_created_at'] = this.formatAMPM(date);
+        this.notifications[i]['description'] = this.urlify(this.notifications[i]['description']);
 
       }
       console.log(this.notifications);
@@ -79,5 +80,17 @@ export class NotificationPage implements OnInit {
    str_pad(n) {
     return String("00" + n).slice(-2);
 }
+
+ urlify(text) {
+  var urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, function(url) {
+    return '<a href="' + url + '">' + url + '</a>';
+  })
+  // or alternatively
+  // return text.replace(urlRegex, '<a href="$1">$1</a>')
+}
+
+
+
 
 }

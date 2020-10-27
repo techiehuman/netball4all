@@ -30,6 +30,8 @@ export class RegisterCompetitionPage implements OnInit {
   constructor(private formBuilder : FormBuilder, private restService : RestService,public miscService : MiscService,private router: Router) { }
 
   ngOnInit() {
+    this.loadPlayerData();
+
     this.validations_form = this.formBuilder.group({
       teamname: new FormControl('', Validators.compose([
         Validators.required
@@ -41,11 +43,10 @@ export class RegisterCompetitionPage implements OnInit {
         Validators.required
       ]))
     });
+
 }
   ionViewDidEnter() {
-    get("PlayerUser").then((response:Player) => {
-      this.player  = response;
-    });
+    this.loadPlayerData();
   }
 
   get errorControl() {
@@ -54,7 +55,14 @@ export class RegisterCompetitionPage implements OnInit {
   closeKeyboard() {
     Keyboard.hide();
   }
-
+  loadPlayerData() {
+    get("PlayerUser").then((response:Player) => {
+      this.player  = response;
+     if(this.player.approved_for_next_season == 1) {
+      this.router.navigate(['app/tabs/id-card']);
+     }
+    });
+  }
   register(form){
     // debugger;
      this.isSubmitted = true;

@@ -47,8 +47,30 @@
   </ion-col>
 </ion-row>
 
-<!---</ion-grid>
-<ion-grid>-->
+</ion-grid>
+<ion-grid class="anchor-section">
+
+   
+  <ion-row class="full">
+    <ion-col class="ion-text-left">
+      <ul><li><ion-router-link href="http://lyonsdemoz.website/netball4all/rules-for-netball4all.html">Rules of Netball4all</ion-router-link></li></ul>
+    
+    </ion-col>
+    <ion-col class="ion-text-left">
+        <ul><li><ion-router-link href="http://lyonsdemoz.website/netball4all/code-of-conduct.html">Codes of Conduct</ion-router-link></li></ul>
+      </ion-col>
+  </ion-row>
+  <ion-row class="full">
+      <ion-col class="ion-text-left">
+          <ul><li><ion-router-link href="https://netball4all.com.au">Visit Website</ion-router-link></li></ul>
+      </ion-col>
+      <ion-col class="ion-text-left">
+          <ul><li><ion-router-link href="http://lyonsdemoz.website/netball4all/contact-page.html">Email Us</ion-router-link></li></ul>
+          </ion-col>
+    </ion-row>
+   
+</ion-grid>
+<ion-grid>
     <form #form="ngForm" [formGroup]="validations_form" (ngSubmit)="register(form)" >
 
   <ion-row class="full ion-margin-bottom ion-margin-start">
@@ -67,7 +89,7 @@
       <ion-col class="ion-text-left">
         <ion-label class="ion-text-left label-team">Team</ion-label>
         <input type="hidden" name="_method" value="PUT">
-        <input type="text" name="teamname" formControlName="teamname" class="input-team full" required (keyup.enter)="closeKeyboard()"/>
+        <input type="text" name="teamname" formControlName="teamname" class="input-team full" placeholder="Enter Team Name" required (keyup.enter)="closeKeyboard()"/>
       </ion-col>
       
     </ion-row>
@@ -83,7 +105,8 @@
           <ion-radio-group [(ngModel)]="details" name="details" formControlName="details" required>
                   <ion-radio value="false"></ion-radio> 
                   </ion-radio-group>
-        <ion-label class="radio-button-text ion-margin-start">My details are unchanged</ion-label>
+        <ion-label class="radio-button-text ion-margin-start">My details are unchanged</ion-label><br/>
+        <ion-label class="add-text ion-margin-start">(as shown on the Profile Tab)</ion-label>
       </ion-col>
       <div class="error ion-padding" *ngIf="isSubmitted && errorControl.details.errors?.required">
           Need to check this before submitting the form.

@@ -6,8 +6,8 @@ ion-content, .ion-grid-strips ion-row{
     text-align: center;
 }
 .round-row {
-    width: 119px;
-    height: 119px;
+    width: 149px;
+    height: 149px;
     overflow: hidden;
     border-radius: 50%;
     border: 5px #ffffff solid;
@@ -18,7 +18,7 @@ ion-content, .ion-grid-strips ion-row{
  .profile-pic{
     width: 100%;
     border-radius: 50%;
-    height: 119px;
+    height: 149px;
     object-fit: cover;
 }
 .ion-row-1 div, .ion-row-2 div, .ion-row-3 div{
@@ -62,7 +62,7 @@ ion-content{
     align-self: stretch;
     position: absolute;
     top: 55px;
-    margin-left: 55px;
+    margin-left: 138px;
     cursor : pointer;
 
 }
@@ -179,3 +179,25 @@ ion-label.radio {
     border-color: #FF0000;
 }
 
+ion-router-link{
+    color: #111E6C;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+    font-family: "Roboto-Light";
+
+}
+.anchor-section ul{
+    display: table-cell;
+}
+.ion-margin-start-2{
+margin-inline-start: var(--ion-margin, 10px);
+}
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+
+    .camera-icon {
+        margin-left: 55px;
+    }
+}

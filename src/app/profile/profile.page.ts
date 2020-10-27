@@ -51,7 +51,7 @@ export class ProfilePage implements OnInit {
       this.states = response
     }); */
    }
-   ngAfterViewInit() {
+   /*ngAfterViewInit() {*/ ionViewWillEnter() {
     this.miscService.presentLoading("Loading...");
 
     this.restService.getStateList().subscribe(response => {
@@ -181,4 +181,5 @@ export class ProfilePage implements OnInit {
   closeKeyboard() {
     Keyboard.hide();
   }
+ 
 }

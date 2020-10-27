@@ -6,8 +6,8 @@ ion-content, .ion-grid-strips ion-row{
     text-align: center;
 }
 .round-row {
-    width: 119px;
-    height: 119px;
+    width: 149px;
+    height: 149px;
     overflow: hidden;
     border-radius: 50%;
     border: 5px #ffffff solid;
@@ -66,7 +66,7 @@ ion-label.user-name{
   }
 
   .ion-row-label {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 15px;
 }
 ion-title {
@@ -95,6 +95,10 @@ ion-title {
     font-family: 'Roboto-Medium';
     font-size: 16px;
     color: #000000;
+}
+.add-text{
+    font-size: 14px;
+    margin-left: 35px;
 }
 .team-strip {
     height: 30px;
@@ -153,7 +157,7 @@ ion-radio, button {
   .profile-pic{
     width: 100%;
     border-radius: 50%;
-    height: 119px;
+    height: 149px;
     object-fit: cover;
 }
 
@@ -177,4 +181,18 @@ ion-radio, button {
     color: #ff0000;
     font-size: 12px;
     
+}
+ion-router-link{
+    color: #111E6C;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+    font-family: "Roboto-Light";
+
+}
+.anchor-section ul{
+    display: table-cell;
+}
+.ion-margin-start-2{
+margin-inline-start: var(--ion-margin, 10px);
 }

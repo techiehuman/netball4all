@@ -145,6 +145,7 @@ public platformType : String = "";
           set("PlayerUser",res);
           this.miscService.dismissLoading();
           this.restService.saveDeviceToken(this.deviceToken, this.platformType, res.id,this.callback);
+       //   alert(res.approved_for_next_season);
           if(res.approved_for_next_season == 0) {
             this.router.navigate(['app/tabs/register-competition']);
           } else

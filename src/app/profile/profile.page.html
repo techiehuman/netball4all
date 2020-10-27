@@ -55,7 +55,30 @@
 
 </ion-grid>
 
-<ion-grid>
+<ion-grid class="anchor-section">
+
+   
+  <ion-row class="full">
+    <ion-col class="ion-text-left">
+      <ul><li><ion-router-link href="http://lyonsdemoz.website/netball4all/rules-for-netball4all.html">Rules of Netball4all</ion-router-link></li></ul>
+    
+    </ion-col>
+    <ion-col class="ion-text-left">
+        <ul><li><ion-router-link href="http://lyonsdemoz.website/netball4all/code-of-conduct.html">Codes of Conduct</ion-router-link></li></ul>
+      </ion-col>
+  </ion-row>
+  <ion-row class="full">
+      <ion-col class="ion-text-left">
+          <ul><li><ion-router-link href="https://netball4all.com.au">Visit Website</ion-router-link></li></ul>
+      </ion-col>
+      <ion-col class="ion-text-left">
+          <ul><li><ion-router-link href="http://lyonsdemoz.website/netball4all/contact-page.html">Email Us</ion-router-link></li></ul>
+          </ion-col>
+    </ion-row>
+   
+</ion-grid>
+
+<!---ion-grid>
 
    
   <ion-row class="full">
@@ -85,12 +108,21 @@
   
           </ion-col>
       </ion-row>
-</ion-grid>
+</ion-grid-->
 
 <form #form="ngForm" (ngSubmit)="updateProfile(form)">
 <ion-input type="file" name="picture" class="ion-hide"></ion-input>
 <ion-grid class="ion-margin-top">
-
+  <ion-row>
+    <ion-col class="ion-text-justify">
+      <ion-label class="ion-label-field">Mobile</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col class="ion-text-justify">
+          <ion-input name="mobile" type="text" placeholder="Mobile"  [(ngModel)]="player.mobile"></ion-input> 
+        </ion-col>
+    </ion-row>
      <ion-row>
         <ion-col class="ion-text-justify">
           <ion-label class="ion-label-field">Email</ion-label>
@@ -102,7 +134,50 @@
           </ion-col>
           
         </ion-row>
+        <ion-row>
+          <ion-col class="ion-text-justify">
+            <ion-label class="ion-label-field">Address</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-text-justify">
+                <ion-input name="street_address" type="text" placeholder="Address"  [(ngModel)]="player.street_address"></ion-input> 
+              </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-text-justify">
+              <ion-label class="ion-label-field">Suburb</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col class="ion-text-justify">
+                  <ion-input name="subrub" type="text" placeholder="Suburb"  [(ngModel)]="player.subrub"></ion-input> 
+                </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="ion-text-justify">
+                <ion-label class="ion-label-field">State</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="ion-text-justify">
+                    <ion-select name="state" placeholder="Select" value="{{selectedState}}" [(ngModel)]="selectedState">
+                       
+                        <ion-select-option *ngFor="let item of states" value="{{item.id}}">{{item.name}}</ion-select-option>
 
+                      </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col class="ion-text-justify">
+                    <ion-label class="ion-label-field">Postal Code</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="ion-text-justify">
+                        <ion-input name="postcode" type="text" placeholder="Postal Code"  [(ngModel)]="player.postcode" ></ion-input> 
+                      </ion-col>
+                  </ion-row>
   <ion-row>
     <ion-col class="ion-text-justify">
       <ion-label class="ion-label-field">Team</ion-label>
@@ -113,61 +188,11 @@
           <ion-input name="team" type="text" placeholder="Team"  [(ngModel)]="player.team"></ion-input> 
       </ion-col>
     </ion-row>
-    <ion-row>
-        <ion-col class="ion-text-justify">
-          <ion-label class="ion-label-field">Mobile</ion-label>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-          <ion-col class="ion-text-justify">
-              <ion-input name="mobile" type="text" placeholder="Mobile"  [(ngModel)]="player.mobile"></ion-input> 
-            </ion-col>
-        </ion-row>
+   
 
-        <ion-row>
-            <ion-col class="ion-text-justify">
-              <ion-label class="ion-label-field">Address</ion-label>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-              <ion-col class="ion-text-justify">
-                  <ion-input name="street_address" type="text" placeholder="Address"  [(ngModel)]="player.street_address"></ion-input> 
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col class="ion-text-justify">
-                  <ion-label class="ion-label-field">State</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                  <ion-col class="ion-text-justify">
-                      <ion-select name="state" placeholder="Select" value="{{selectedState}}" [(ngModel)]="selectedState">
-                         
-                          <ion-select-option *ngFor="let item of states" value="{{item.id}}" > {{item.name}}</ion-select-option>
-
-                        </ion-select>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col class="ion-text-justify">
-                      <ion-label class="ion-label-field">Postal Code</ion-label>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                      <ion-col class="ion-text-justify">
-                          <ion-input name="postcode" type="text" placeholder="Postal Code"  [(ngModel)]="player.postcode" ></ion-input> 
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col class="ion-text-justify">
-                          <ion-label class="ion-label-field">Suburb</ion-label>
-                        </ion-col>
-                      </ion-row>
-                      <ion-row>
-                          <ion-col class="ion-text-justify">
-                              <ion-input name="subrub" type="text" placeholder="Suburb"  [(ngModel)]="player.subrub"></ion-input> 
-                            </ion-col>
-                        </ion-row>
+       
+           
+                    
 
         <ion-row>
             <ion-col class="ion-text-justify">

@@ -4,6 +4,7 @@ import { Player } from '../player';
 import { States } from '../states';
 import { Season } from '../season';
 import { get,set, remove } from '../storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class IdCardPage implements OnInit {
 
 
 
-  constructor(public restService: RestService) {
+  constructor(public restService: RestService,public router: Router) {
 
    
    }
@@ -30,7 +31,7 @@ export class IdCardPage implements OnInit {
    ngOnInit() {
 
     console.log('Initializing HomePage');
-
+    this.loadPlayerData();
    
    
   }
@@ -46,7 +47,9 @@ export class IdCardPage implements OnInit {
    // this.restService.getPlayerDetailsById(1).subscribe(response => {
     get("PlayerUser").then((response:Player) => {
       this.player  = response;
-    
+      if(this.player.approved_for_next_season == 0) {
+        this.router.navigate(['app/tabs/register-competition']);
+       }
   
 
     console.log(this.player)
@@ -79,6 +82,15 @@ export class IdCardPage implements OnInit {
    // });
 
     
+  }
+
+  loadPlayerData() {
+    get("PlayerUser").then((response:Player) => {
+      this.player  = response;
+     if(this.player.approved_for_next_season == 0) {
+      this.router.navigate(['app/tabs/register-competition']);
+     }
+    });
   }
 
   
