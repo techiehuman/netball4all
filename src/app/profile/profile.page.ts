@@ -36,7 +36,7 @@ export class ProfilePage implements OnInit {
   public pictureData : string = "";
   public imageFile : File;
   public imageName : string = "";
-  public selectedState:number;
+  public selectedState = {name : "Select", "id" : -1};
 
   constructor(public router: Router, private formBuilder : FormBuilder,
     public  restService: RestService, private ref: ChangeDetectorRef,public miscService : MiscService, private zone: NgZone){
@@ -51,7 +51,59 @@ export class ProfilePage implements OnInit {
       this.states = response
     }); */
    }
-   /*ngAfterViewInit() {*/ ionViewWillEnter() {
+
+   ionViewWillEnter() {
+     
+    this.miscService.presentLoading("Loading...");
+
+    this.restService.getStateList().subscribe(response => {
+
+
+      this.states = response;
+  
+      get("PlayerUser").then((response:Player) => {
+        $("#profile-pic").attr("src",response.picture);
+  
+        this.player  = response;
+        setTimeout(() => {
+          console.log("state id : "+this.player.state)
+          console.log("selectedState: "+this.player.state);
+          this.states.forEach(stateTmp => {
+              if (stateTmp.id == this.player.state) {
+                this.selectedState["id"] = this.player.state;
+                this.selectedState["name"] = stateTmp.name;
+              }
+          });
+         }, 1000);
+    
+      if(this.player.is_financial == 0) {
+        this.financial_status = "Unfinancial";
+      } else {
+        this.financial_status = "Financial";
+      }
+  
+      this.restService.getSeasonList().subscribe(response => {
+        this.seasons = response;
+        
+        this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
+        this.miscService.dismissLoading(); 
+      });
+  
+      });
+    });
+
+    /*setTimeout(() => {
+      // your code
+      this.zone.run(() => {
+        get("states").then((response:[States]) => {
+          this.states = new Array();
+          this.states = response;
+          this.selectedState = this.player.state;
+        });  
+      });
+     }, 4000); */
+   }
+   /*ngAfterViewInit() {
     this.miscService.presentLoading("Loading...");
 
     this.restService.getStateList().subscribe(response => {
@@ -93,7 +145,7 @@ export class ProfilePage implements OnInit {
         });  
       });
      //}, 2000); 
-   }
+   }*/
 
    ionViewDidEnter() {
    }

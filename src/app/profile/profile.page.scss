@@ -201,3 +201,10 @@ and (max-device-width : 667px) {
         margin-left: 55px;
     }
 }
+
+ion-select {
+    div.select-text.select-placeholder {
+       color: get-color(black) !important;
+    }
+ }
+ 

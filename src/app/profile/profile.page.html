@@ -156,14 +156,14 @@
             </ion-row>
             <ion-row>
               <ion-col class="ion-text-justify">
-                <ion-label class="ion-label-field">State</ion-label>
+                <ion-label class="ion-label-field">State{{selectedState.id}}</ion-label>
               </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col class="ion-text-justify">
-                    <ion-select name="state" placeholder="Select" value="{{selectedState}}" [(ngModel)]="selectedState">
+                    <ion-select name="state" placeholder="Select" [placeholder]="selectedState.name" [(ngModel)]="selectedState.id">
                        
-                        <ion-select-option *ngFor="let item of states" value="{{item.id}}">{{item.name}}</ion-select-option>
+                        <ion-select-option *ngFor="let item of states" value="{{item.id}}" [attr.selected]="item.id == selectedState.id">{{item.name}}</ion-select-option>
 
                       </ion-select>
                 </ion-col>

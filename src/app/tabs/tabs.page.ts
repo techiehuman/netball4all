@@ -16,14 +16,28 @@ export class TabsPage {
 
 
   constructor(private router: Router) {}
-  ionViewDidEnter(){
+
+  ngOnInit() {
     get("PlayerUser").then((response:Player) => {
       this.player  = response;
       if(this.player.approved_for_next_season == 1) {
           this.idCardEnable = true;
           this.tabName = "id-card";
-          
+      } else {
+        this.idCardEnable = false;
+        this.tabName = "register-competition";
+      }
 
+    });
+  }
+
+  scanApprovedStatus() {
+
+    get("PlayerUser").then((response:Player) => {
+      this.player  = response;
+      if(this.player.approved_for_next_season == 1) {
+          this.idCardEnable = true;
+          this.tabName = "id-card";
       } else {
         this.idCardEnable = false;
         this.tabName = "register-competition";
