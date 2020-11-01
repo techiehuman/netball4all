@@ -16,6 +16,7 @@ const { Camera } = Plugins;
 const { Keyboard } = Plugins;
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -51,7 +52,6 @@ export class ProfilePage implements OnInit {
       this.states = response
     }); */
    }
-
    ionViewWillEnter() {
      
     this.miscService.presentLoading("Loading...");
@@ -103,49 +103,6 @@ export class ProfilePage implements OnInit {
       });
      }, 4000); */
    }
-   /*ngAfterViewInit() {
-    this.miscService.presentLoading("Loading...");
-
-    this.restService.getStateList().subscribe(response => {
-      this.states = response;
-  
-      get("PlayerUser").then((response:Player) => {
-        $("#profile-pic").attr("src",response.picture);
-  
-        this.player  = response;
-        console.log("state id : "+this.player.state)
-        this.selectedState = this.player.state;
-        console.log("selectedState: "+this.player.state)  
-        this.ref.detectChanges();
-        
-  
-      if(this.player.is_financial == 0) {
-        this.financial_status = "Unfinancial";
-      } else {
-        this.financial_status = "Financial";
-      }
-  
-      this.restService.getSeasonList().subscribe(response => {
-        this.seasons = response;
-        
-        this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
-        this.miscService.dismissLoading(); 
-      });
-  
-      });
-    });
-
-    //setTimeout(() => {
-      // your code
-      this.zone.run(() => {
-        get("states").then((response:[States]) => {
-          this.states = new Array();
-          this.states = response;
-          this.selectedState = this.player.state;
-        });  
-      });
-     //}, 2000); 
-   }*/
 
    ionViewDidEnter() {
    }
@@ -168,11 +125,17 @@ export class ProfilePage implements OnInit {
 
   async takePicture() {
     const image = await Camera.getPhoto({
-      quality: 100,
+      quality: 80,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
     });
+  
     var imageUrl = image.path;
+
+    console.log("")
+    console.log(image);
+    console.log("dataUrl : "+image.dataUrl);
+
     console.log("imageUrl : "+imageUrl);
     // Can be set to the src of an image now
     $("#profile-pic").attr("src",image.dataUrl);
