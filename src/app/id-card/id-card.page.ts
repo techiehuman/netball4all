@@ -36,8 +36,13 @@ export class IdCardPage implements OnInit {
    
   }
   
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter HomePage');
+  }
+
   ionViewDidEnter() {
 
+    
     this.restService.getStateList().subscribe(response => {
       remove("states");
       set("states",response);

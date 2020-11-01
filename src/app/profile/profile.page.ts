@@ -16,6 +16,7 @@ const { Camera } = Plugins;
 const { Keyboard } = Plugins;
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -51,7 +52,7 @@ export class ProfilePage implements OnInit {
       this.states = response
     }); */
    }
-   /*ngAfterViewInit() {*/ ionViewWillEnter() {
+   ngAfterViewInit() { /*ionViewWillEnter() { */
     this.miscService.presentLoading("Loading...");
 
     this.restService.getStateList().subscribe(response => {
@@ -116,11 +117,17 @@ export class ProfilePage implements OnInit {
 
   async takePicture() {
     const image = await Camera.getPhoto({
-      quality: 100,
+      quality: 80,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
     });
+  
     var imageUrl = image.path;
+
+    console.log("")
+    console.log(image);
+    console.log("dataUrl : "+image.dataUrl);
+
     console.log("imageUrl : "+imageUrl);
     // Can be set to the src of an image now
     $("#profile-pic").attr("src",image.dataUrl);

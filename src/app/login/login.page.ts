@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RestService } from '../rest.service';
-import {  set, remove } from '../storage.service';
-
+import {  get, set, remove } from '../storage.service';
 import { MiscService } from '../misc.service';
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { Plugins,PushNotification,
   PushNotificationToken,
   PushNotificationActionPerformed  } from '@capacitor/core';
+import { IdCardPage } from '../id-card/id-card.page';
+import { Player } from '../player';
 
 
 const { Keyboard,PushNotifications } = Plugins;
@@ -33,7 +34,7 @@ public platformType : String = "";
 
 
 
-  constructor(private router: Router, private formBuilder : FormBuilder, private restService: RestService, public miscService : MiscService,public platform: Platform){
+  constructor(private navControl: NavController, private router: Router, private formBuilder : FormBuilder, private restService: RestService, public miscService : MiscService,public platform: Platform){
   /* this.validations_form = this.formBuilder.group({
       username : new FormControl('username', Validators.compose([
         Validators.required,
@@ -109,25 +110,6 @@ public platformType : String = "";
         console.log('Error on registration: ' + JSON.stringify(error));
       }
     );
-
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotification) => {
-        console.log('Push received: ' + JSON.stringify(notification));
-
-      }
-    );
-
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: PushNotificationActionPerformed) => {
-        console.log('Push action performed: ' + JSON.stringify(notification));
-       // alert('clicked')
-        this.router.navigate(['app/tabs/notification'])
-
-      }
-    );
-
   }
   ionViewDidEnter() {
      this.platformType = this.platform.is("android") ? "ANDROID" : "IOS";
@@ -148,9 +130,9 @@ public platformType : String = "";
        //   alert(res.approved_for_next_season);
           if(res.approved_for_next_season == 0) {
             this.router.navigate(['app/tabs/register-competition']);
-          } else
+          } else {
           this.router.navigate(['app/tabs/id-card']);
-
+          }
         }else {
           alert("Wrong username or password.");
         }
