@@ -5,6 +5,8 @@ import { States } from '../states';
 import { Season } from '../season';
 import { get,set, remove } from '../storage.service';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
+
 
 
 @Component({
@@ -23,9 +25,11 @@ export class IdCardPage implements OnInit {
 
 
 
-  constructor(public restService: RestService,public router: Router) {
+  constructor(public restService: RestService,public router: Router,private platform: Platform) {
 
-   
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      return;
+    });
    }
 
    ngOnInit() {
