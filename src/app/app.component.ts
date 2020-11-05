@@ -7,9 +7,8 @@ import { get,set, remove } from './storage.service';
 import { Player } from './player';
 import { Router } from '@angular/router';
 import { Plugins,PushNotification,
-  PushNotificationToken,
   PushNotificationActionPerformed  } from '@capacitor/core';
-const { Keyboard,PushNotifications } = Plugins;
+const { PushNotifications } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -82,14 +81,20 @@ export class AppComponent {
                   }
                 }
             );
+          } else {
+                let url = this.router.url;
+                if (url.indexOf("notification") != -1) {
+                //  this.navCtrl.navigateRoot('app/tabs/notification'); 
+                let randomNum = new Date().getMilliseconds();
+                this.navCtrl.navigateRoot('app/tabs/notification/'+randomNum);
+         
+                }
           }
-          
       });
       // Method called when tapping on a notification
       PushNotifications.addListener('pushNotificationActionPerformed',
         (notification: PushNotificationActionPerformed) => {
           console.log('Push action performed: ' + JSON.stringify(notification));
-          //alert('clicked')
 
          //{"actionId":"tap","notification":{"id":"0:1603975178505323%79eecb3579eecb35","data":{"google.delivered_priority":"high","google.sent_time":"1603975178482","google.ttl":"2419200","google.original_priority":"high","screen":"'Home'","user_id":"10","from":"302546325241","type":"NewSeason","is_approved":"0","collapse_key":"com.lyons.netball4all"}}}
 
@@ -109,7 +114,8 @@ export class AppComponent {
                 }
             );
           } else {
-            this.router.navigate(['app/tabs/notification']);
+            let randomNum = new Date().getMilliseconds();
+            this.router.navigate(['app/tabs/notification/'+randomNum]);
           }
   
         }

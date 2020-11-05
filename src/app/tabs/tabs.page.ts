@@ -13,11 +13,13 @@ export class TabsPage {
   public player: Player = new Player();
   public idCardEnable : boolean = false;
   public tabName = "";
-
+  public randomDate = 0;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
+
+    this.randomDate = new Date().getMilliseconds();
     get("PlayerUser").then((response:Player) => {
       this.player  = response;
       if(this.player.approved_for_next_season == 1) {

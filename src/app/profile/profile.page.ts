@@ -38,7 +38,7 @@ export class ProfilePage implements OnInit {
   public imageFile : File;
   public imageName : string = "";
   public selectedState = {name : "Select", "id" : -1};
-
+  
   constructor(public router: Router, private formBuilder : FormBuilder,
     public  restService: RestService, private ref: ChangeDetectorRef,public miscService : MiscService, private zone: NgZone){
       get("states").then((response:[States]) => {
@@ -124,28 +124,38 @@ export class ProfilePage implements OnInit {
    } */
 
   async takePicture() {
+
+
     const image = await Camera.getPhoto({
-      quality: 60,
+      quality: 80,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
+      width:200,
+      height:200
     });
-  
-    var imageUrl = image.path;
 
-    console.log("")
-    console.log(image);
-    console.log("dataUrl : "+image.dataUrl);
-
-    console.log("imageUrl : "+imageUrl);
+    //var imageUrl = image.path;
+    //console.log("")
+    //console.log(image);
+    //console.log("dataUrl : "+image.dataUrl);
+    //console.log("imageUrl : "+imageUrl);
     // Can be set to the src of an image now
-    $("#profile-pic").attr("src",image.dataUrl);
-      this.pictureData = "image";
+
+    setTimeout(function () {
+        $("#profile-pic").attr("src",image.dataUrl);
+
+    }, 1000);
+    
+    this.pictureData = "image";
       //imageElement.src = imageUrl;
-    this.imageName = "profile-"+this.player.registration_number+Date.now()+ '.'+image.format;
+    this.imageName = "profile-"+Date.now()+ '.'+image.format;
+
     // call method that creates a blob from dataUri
     const imageBlob = this.miscService.dataURItoBlob(image.dataUrl);
+
      this.imageFile = new File([imageBlob], this.imageName, { type: 'image/'+image.format })
-  }
+
+    }
 
   updateProfile(form){
    

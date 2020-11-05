@@ -42,6 +42,7 @@ export class IdCardPage implements OnInit {
   
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage');
+    console.log("Router : ", this.router.url);
   }
 
   ionViewDidEnter() {

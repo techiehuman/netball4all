@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
-        path: 'notification',
+        path: 'notification/:refresh',
         loadChildren: () => import('../notification/notification.module').then(m => m.NotificationPageModule)
       },
       {

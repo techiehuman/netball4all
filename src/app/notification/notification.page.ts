@@ -27,8 +27,7 @@ export class NotificationPage implements OnInit {
    // alert("ionViewDidLoad");
   }
   ngOnInit() {
-
-       
+    this.loadNotifications();       
   }
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
