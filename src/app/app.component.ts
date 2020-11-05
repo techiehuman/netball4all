@@ -7,7 +7,9 @@ import { get,set, remove } from './storage.service';
 import { Player } from './player';
 import { Router } from '@angular/router';
 import { Plugins,PushNotification,
-  PushNotificationActionPerformed  } from '@capacitor/core';
+  PushNotificationActionPerformed} from '@capacitor/core';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 const { PushNotifications } = Plugins;
 
 @Component({
@@ -21,7 +23,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private localNotifications: LocalNotifications
   ) {
     this.initializeApp();
   }
@@ -87,7 +90,14 @@ export class AppComponent {
                 //  this.navCtrl.navigateRoot('app/tabs/notification'); 
                 let randomNum = new Date().getMilliseconds();
                 this.navCtrl.navigateRoot('app/tabs/notification/'+randomNum);
-         
+          
+                  // Schedule a single notification
+                  this.localNotifications.schedule({
+                    id: 1,
+                    text: 'Single ILocalNotification',
+                    sound: 'default',
+                    data: { "title": "Hey Jim" }
+                  });
                 }
           }
       });
