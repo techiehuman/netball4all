@@ -37,17 +37,29 @@ export class IdCardPage implements OnInit {
     console.log('Initializing HomePage');
     this.loadPlayerData();
    
-   
+      
   }
   
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage');
     console.log("Router : ", this.router.url);
+
+    this.platform.resume.subscribe((res) => {
+      console.log('On Resume Called HomePage');
+        this.restService.getPlayerDetailsById(this.player.id).subscribe(response => {
+          remove("PlayerUser");
+          set("PlayerUser",response);
+          this.player  = response;
+          if(this.player.approved_for_next_season == 0) {
+            this.router.navigate(['app/tabs/register-competition']);
+          }
+        }); 
+      });
   }
 
   ionViewDidEnter() {
 
-    
+    console.log("ionViewDidEnter  called");
     this.restService.getStateList().subscribe(response => {
       remove("states");
       set("states",response);
@@ -71,10 +83,8 @@ export class IdCardPage implements OnInit {
 
     this.restService.getSeasonList().subscribe(response => {
       this.seasons = response;
-    this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
-
+      this.seasonName = this.restService.getSeasonName(this.player.season_id, this.seasons);
       console.log(this.seasonName)
-
     });
 
     this.restService.getStateList().subscribe(response => {

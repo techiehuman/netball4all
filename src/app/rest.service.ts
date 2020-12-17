@@ -179,7 +179,7 @@ let api: string = "api/update-player-details-api/";
     if(imageName!="") {
         formData.append("picture", data.picture, imageName);
     }
-    formData.append("team",data.team);
+    //formData.append("team",data.team);
     formData.append("mobile",data.mobile);
     formData.append("state",data.state);
     formData.append("street_address",data.street_address);

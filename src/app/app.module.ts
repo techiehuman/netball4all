@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RestService } from './rest.service';
 import {  HttpClientModule } from '@angular/common/http';
+import { Network } from '@ionic-native/network/ngx';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {  HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    RestService
+    RestService,
+    Network
   ],
   bootstrap: [AppComponent]
 })

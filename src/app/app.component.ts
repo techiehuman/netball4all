@@ -8,7 +8,6 @@ import { Player } from './player';
 import { Router } from '@angular/router';
 import { Plugins,PushNotification,
   PushNotificationActionPerformed} from '@capacitor/core';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 const { PushNotifications } = Plugins;
 
@@ -24,7 +23,6 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     private navCtrl: NavController,
-    private localNotifications: LocalNotifications
   ) {
     this.initializeApp();
   }
@@ -78,7 +76,7 @@ export class AppComponent {
               set("PlayerUser",response);
                   //data":{"screen":"'Home'","user_id":"10","type":"NewSeason","is_approved":"0"}
                   //this.router.navigate(['app/tabs/id-card']);
-                  this.navCtrl.pop();
+                 // this.navCtrl.pop();
                   if (response.approved_for_next_season == 0) {
                     this.navCtrl.navigateRoot('app/tabs/register-competition');            
                   }
@@ -86,18 +84,15 @@ export class AppComponent {
             );
           } else {
                 let url = this.router.url;
-                if (url.indexOf("notification") != -1) {
+                var dataObj = notification["data"];
+
+                if (url.indexOf("notification") != -1 || (dataObj["type"] && dataObj["type"] == "Notification")) {
                 //  this.navCtrl.navigateRoot('app/tabs/notification'); 
                 let randomNum = new Date().getMilliseconds();
                 this.navCtrl.navigateRoot('app/tabs/notification/'+randomNum);
-          
-                  // Schedule a single notification
-                  this.localNotifications.schedule({
-                    id: 1,
-                    text: 'Single ILocalNotification',
-                    sound: 'default',
-                    data: { "title": "Hey Jim" }
-                  });
+                } else {
+                  console.log("reladong ");
+                    window.location.reload();
                 }
           }
       });

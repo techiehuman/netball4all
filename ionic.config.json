@@ -1,7 +1,8 @@
 {
   "name": "netball4all",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

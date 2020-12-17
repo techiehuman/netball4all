@@ -130,8 +130,8 @@ export class ProfilePage implements OnInit {
       quality: 80,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      width:200,
-      height:200
+      width:400,
+      height:400
     });
 
     //var imageUrl = image.path;
@@ -140,9 +140,13 @@ export class ProfilePage implements OnInit {
     //console.log("dataUrl : "+image.dataUrl);
     //console.log("imageUrl : "+imageUrl);
     // Can be set to the src of an image now
-
+    debugger;
+   //$("#profile-pic").attr("src",image.dataUrl);
     setTimeout(function () {
-        $("#profile-pic").attr("src",image.dataUrl);
+        //$("#profile-pic").attr("src",image.dataUrl);
+      console.log("***setTimeout****")
+      console.log(image.dataUrl)
+      console.log("***setTimeout****")
 
     }, 1000);
     
@@ -154,8 +158,24 @@ export class ProfilePage implements OnInit {
     const imageBlob = this.miscService.dataURItoBlob(image.dataUrl);
 
      this.imageFile = new File([imageBlob], this.imageName, { type: 'image/'+image.format })
+     /*$("#profile-pic").attr("src",this.imageFile);
+     console.log("IMAGEFILE : ");
 
-    }
+     console.log(image.webPath);
+     console.log("IMAGEFILE : ");
+     console.log(this.imageFile);
+     console.log("IMAGEFILE : ");*/
+
+     this.player.picture = image.dataUrl;
+     /*setTimeout(function() {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#profile-pic').attr('src', this.result);
+            
+        }
+        reader.readAsDataURL(this.imageFile);
+     }, 2000);*/
+  }
 
   updateProfile(form){
    
@@ -192,7 +212,7 @@ export class ProfilePage implements OnInit {
         console.log(res)
         console.log(get("PlayerUser"));
           this.miscService.dismissLoading();
-        this.miscService.showToastMessage('Profile Updated successfully');
+        this.miscService.showToastMessage('Profile Updated successfully.');
        // this.router.navigate(['app/tabs/id-card'])        
       }else {
         alert("Something went wrong.");

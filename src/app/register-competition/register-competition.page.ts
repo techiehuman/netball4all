@@ -55,6 +55,7 @@ export class RegisterCompetitionPage implements OnInit {
   closeKeyboard() {
     Keyboard.hide();
   }
+  
   loadPlayerData() {
     get("PlayerUser").then((response:Player) => {
       this.player  = response;
